@@ -1,0 +1,24 @@
+{
+  "name": "if",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marooonya/if-js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Marooonya/if-js/issues"
+  },
+  "homepage": "https://github.com/Marooonya/if-js#readme",
+  "devDependencies": {
+    "eslint": "^8.32.0",
+    "prettier": "2.8.3"
+  }
+}
