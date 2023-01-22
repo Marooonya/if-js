@@ -163,7 +163,6 @@ console.log('----------');
 const text1 = document.getElementById('text1');
 const text2 = document.getElementById('text2');
 const text3 = document.getElementById('text3');
-
 const colours = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
 
 differentColours1(colours);

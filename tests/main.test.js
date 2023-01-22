@@ -20,7 +20,6 @@ function differentColours1(arr = []) {
     return false;
   }
 }
-
 test('', () => {
   const colours = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
 
