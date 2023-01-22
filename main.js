@@ -1,7 +1,7 @@
 let user = 'John Doe';
 console.log(user);
 
-let student = 'Masha';
+const student = 'Masha';
 console.log(student);
 
 user = student; //переопределение переменной
@@ -21,7 +21,7 @@ console.log(typeof test); //выводит тип переменной (явля
 
 console.log('----------');
 
-let numb = [2, 3, 5, 8];
+const numb = [2, 3, 5, 8];
 console.log(numb);
 
 let sum = 1;
@@ -33,7 +33,7 @@ console.log(sum);
 
 console.log('----------');
 
-let numbers = [2, 5, 8, 15, 0, 6, 20, 3];
+const numbers = [2, 5, 8, 15, 0, 6, 20, 3];
 console.log(numbers);
 
 for (let i = 0; i < 8; i++) {
@@ -44,7 +44,7 @@ for (let i = 0; i < 8; i++) {
 
 console.log('----------');
 
-let arr = [2, 5, 8, 15, 0, 6, 20, 3];
+const arr = [2, 5, 8, 15, 0, 6, 20, 3];
 console.log(arr);
 
 for (let i = 0; i < 8; i++) {
@@ -55,9 +55,12 @@ for (let i = 0; i < 8; i++) {
 
 console.log('----------');
 
-const palindrome = function (string) {//обозначаем функцию
-  for (let i = 0; i < string.length / 2; i++) {//"пробегаем" буквы до середины, т.к. сравниваем первую половину с зеркально отраженной правой
-    if (string[i] === string[string.length - i - 1]) {//1-ый эл. с индексом 0 (например, ш) сравниваем с последним(длина "шалаш" - 5, отнимаем i, чтобы приблизиться к середине слова, и 1, т.к. индекс последнего элемента на 1 меньше длины всего слова)
+const palindrome = function (string) {
+  //обозначаем функцию
+  for (let i = 0; i < string.length / 2; i++) {
+    //"пробегаем" буквы до середины, т.к. сравниваем первую половину с зеркально отраженной правой
+    if (string[i] === string[string.length - i - 1]) {
+      //1-ый эл. с индексом 0 (например, ш) сравниваем с последним(длина "шалаш" - 5, отнимаем i, чтобы приблизиться к середине слова, и 1, т.к. индекс последнего элемента на 1 меньше длины всего слова)
       return true; //вывод
     }
     {
@@ -81,9 +84,10 @@ console.log(palindrome(word_3));
 
 console.log('----------');
 
-const max = function (n_1, n_2) {//обозначаем функцию
+const max = function (n_1, n_2) {
+  //обозначаем функцию
   if (n_1 > n_2) {
-    return n_1;//вывод
+    return n_1; //вывод
   }
   {
     return n_2;
@@ -96,9 +100,10 @@ const num_2 = 20;
 console.log(num_1, num_2);
 console.log(max(num_1, num_2));
 
-const min = function (n_1, n_2) {//обозначаем функцию
+const min = function (n_1, n_2) {
+  //обозначаем функцию
   if (n_1 < n_2) {
-    return n_1;//вывод
+    return n_1; //вывод
   }
   {
     return n_2;
@@ -120,15 +125,16 @@ console.log(max_min(a, b));
 
 console.log('----------');
 
-const Zero = function (arr = []) {//обозначаем функцию
+const Zero = function (arr = []) {
+  //обозначаем функцию
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] < 100) {
       if (arr[i] % 10 === 0) {
-        let Z = arr[i] / 10;
+        const Z = arr[i] / 10;
         arr[i] = Z + 'zero';
       }
     } else {
-      let Z = arr[i] / 100;
+      const Z = arr[i] / 100;
       arr[i] = Z + 'zerozero';
     }
   }
@@ -139,3 +145,57 @@ const mas = [71, 10, 19, 3, 7, 50, 27, 38, 100, 45];
 
 console.log(mas);
 console.log(Zero(mas));
+
+console.log('----------');
+
+function Sum() {
+  const first_num = 2;
+  const second_num = 5;
+
+  return function operation() {
+    return first_num + second_num;
+  };
+}
+console.log(Sum(2)(5));
+
+console.log('----------');
+
+const text1 = document.getElementById('text1');
+const text2 = document.getElementById('text2');
+const text3 = document.getElementById('text3');
+
+const colours = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
+
+differentColours1(colours);
+differentColours2(colours);
+differentColours3(colours);
+
+function differentColours1(arr = []) {
+  let i = 0;
+  return text1.addEventListener('click', (event) => {
+    event.target.style.color = arr[i++];
+    if (arr.length === i) {
+      i = 0;
+    }
+  });
+}
+
+function differentColours2(arr = []) {
+  let i = 0;
+  return text2.addEventListener('click', (event) => {
+    event.target.style.color = arr[i++];
+    if (arr.length === i) {
+      i = 0;
+    }
+  });
+}
+
+function differentColours3(arr = []) {
+  let i = 0;
+  return text3.addEventListener('click', (event) => {
+    event.target.style.color = arr[i++];
+    if (arr.length === i) {
+      i = 0;
+    }
+  });
+}
