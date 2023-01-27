@@ -222,7 +222,7 @@ const data = [
     city: 'Saint Petersburg',
     hotel: 'Hotel Leopold',
     toString: function () {
-      return this.city + ' ' + this.country + ' ' + this.hotel;
+      return this.city + ',' + this.country + ',' + this.hotel;
     },
   },
   {
@@ -230,7 +230,7 @@ const data = [
     city: 'Santa Cruz de Tenerife',
     hotel: 'Apartment Sunshine',
     toString: function () {
-      return this.city + ' ' + this.country + ' ' + this.hotel;
+      return this.city + ',' + this.country + ',' + this.hotel;
     },
   },
   {
@@ -238,7 +238,7 @@ const data = [
     city: 'Vysokie Tatry',
     hotel: 'Villa Kunerad',
     toString: function () {
-      return this.city + ' ' + this.country + ' ' + this.hotel;
+      return this.city + ',' + this.country + ',' + this.hotel;
     },
   },
   {
@@ -246,7 +246,7 @@ const data = [
     city: 'Berlin',
     hotel: 'Hostel Friendship',
     toString: function () {
-      return this.city + ' ' + this.country + ' ' + this.hotel;
+      return this.city + ',' + this.country + ',' + this.hotel;
     },
   },
   {
@@ -254,7 +254,7 @@ const data = [
     city: 'Bali',
     hotel: 'Ubud Bali Resort&SPA',
     toString: function () {
-      return this.city + ' ' + this.country + ' ' + this.hotel;
+      return this.city + ',' + this.country + ',' + this.hotel;
     },
   },
   {
@@ -262,7 +262,7 @@ const data = [
     city: 'Rotterdam',
     hotel: 'King Kong Hostel',
     toString: function () {
-      return this.city + ' ' + this.country + ' ' + this.hotel;
+      return this.city + ',' + this.country + ',' + this.hotel;
     },
   },
   {
@@ -270,7 +270,7 @@ const data = [
     city: 'Ourika',
     hotel: 'Rokoko Hotel',
     toString: function () {
-      return this.city + ' ' + this.country + ' ' + this.hotel;
+      return this.city + ',' + this.country + ',' + this.hotel;
     },
   },
   {
@@ -278,12 +278,12 @@ const data = [
     city: 'Berlin',
     hotel: 'Hotel Rehberge Berlin Mitte',
     toString: function () {
-      return this.city + ' ' + this.country + ' ' + this.hotel;
+      return this.city + ',' + this.country + ',' + this.hotel;
     },
   },
 ];
 
-const loc = 'vil';
+const loc = 'ber';
 
 function trip(arr = [], str) {
   const reg = new RegExp(str);
@@ -295,3 +295,238 @@ function trip(arr = [], str) {
 }
 
 trip(data, loc);
+
+console.log('----------');
+
+const newPalindrome = (str = '') =>
+  str.split([,]).reverse().join('') === str
+    ? console.log('palindrome')
+    : console.log('no palindrome');
+
+newPalindrome('шалаш');
+
+function newTrip(arr = [], str) {
+  const reg = new RegExp(str);
+  arr.forEach((index) => {
+    if (index.toString().toLowerCase().match(reg)) {
+      console.log(index.toString());
+    }
+  });
+}
+
+newTrip(data, loc);
+
+const hotels = [
+  {
+    name: "Hotel Leopold",
+    city: "Saint Petersburg",
+    country: "Russia",
+  },
+  {
+    name: "Apartment Sunshine",
+    city: "Santa Cruz de Tenerife",
+    country: "Spain",
+  },
+  {
+    name: "Villa Kunerad",
+    city: "Vysokie Tatry",
+    country: "Slowakia",
+  },
+  {
+    name: "Hostel Friendship",
+    city: "Berlin",
+    country: "Germany",
+  },
+  {
+    name: "Radisson Blu Hotel",
+    city: "Kyiv",
+    country: "Ukraine",
+  },
+  {
+    name: "Paradise Hotel",
+    city: "Guadalupe",
+    country: "Mexico",
+  },
+  {
+    name: "Hotel Grindewald",
+    city: "Interlaken",
+    country: "Switzerland",
+  },
+  {
+    name: "The Andaman Resort",
+    city: "Port Dickson",
+    country: "Malaysia",
+  },
+  {
+    name: "Virgin Hotel",
+    city: "Chicago",
+    country: "USA",
+  },
+  {
+    name: "Grand Beach Resort",
+    city: "Dubai",
+    country: "United Arab Emirates",
+  },
+  {
+    name: "Shilla Stay",
+    city: "Seoul",
+    country: "South Korea",
+  },
+  {
+    name: "San Firenze Suites",
+    city: "Florence",
+    country: "Italy",
+  },
+  {
+    name: "The Andaman Resort",
+    city: "Port Dickson",
+    country: "Malaysia",
+  },
+  {
+    name: "Black Penny Villas",
+    city: "BTDC, Nuca Dua",
+    country: "Indonesia",
+  },
+  {
+    name: "Koko Hotel",
+    city: "Tokyo",
+    country: "Japan",
+  },
+  {
+    name: "Ramada Plaza",
+    city: "Istanbul",
+    country: "Turkey",
+  },
+  {
+    name: "Waikiki Resort Hotel",
+    city: "Hawaii",
+    country: "USA",
+  },
+  {
+    name: "Puro Hotel",
+    city: "Krakow",
+    country: "Poland",
+  },
+  {
+    name: "Asma Suites",
+    city: "Santorini",
+    country: "Greece",
+  },
+  {
+    name: "Cityden Apartments",
+    city: "Amsterdam",
+    country: "Netherlands",
+  },
+  {
+    name: "Mandarin Oriental",
+    city: "Miami",
+    country: "USA",
+  },
+  {
+    name: "Concept Terrace Hotel",
+    city: "Rome",
+    country: "Italy",
+  },
+  {
+    name: "Ponta Mar Hotel",
+    city: "Fortaleza",
+    country: "Brazil",
+  },
+  {
+    name: "Four Seasons Hotel",
+    city: "Sydney",
+    country: "Australia",
+  },
+  {
+    name: "Le Meridien",
+    city: "Nice",
+    country: "France",
+  },
+  {
+    name: "Apart Neptun",
+    city: "Gdansk",
+    country: "Poland",
+  },
+  {
+    name: "Lux Isla",
+    city: "Ibiza",
+    country: "Spain",
+  },
+  {
+    name: "Nox Hostel",
+    city: "London",
+    country: "UK",
+  },
+  {
+    name: "Leonardo Vienna",
+    city: "Vienna",
+    country: "Austria",
+  },
+  {
+    name: "Adagio Aparthotel",
+    city: "Edinburgh",
+    country: "UK",
+  },
+  {
+    name: "Steigenberger Hotel",
+    city: "Hamburg",
+    country: "Germany",
+  },
+];
+
+function coutryAndCity(hotelInfo = []) {
+  const countryCity = [];
+  const cityOfCountry = [];
+  const result = [];
+  hotelInfo.forEach((item) => {
+    if (!result.includes(item.country)) {
+      countryCity.push(item.country);
+    }
+  });
+  for (const i in countryCity) {
+    const arr = [];
+    hotelInfo.forEach((item) => {
+      if (countryCity[i] === item.country) {
+        arr.push(item.city);
+      }
+    });
+    cityOfCountry.push(arr);
+  }
+  for (let n = 0; n < countryCity.length; n++) {
+    result.push({ [countryCity[n]]: cityOfCountry[n] });
+  }
+  return { ...result };
+}
+
+console.log(coutryAndCity(hotels));
+
+const days = []; //пустой массив, который мы заполняем
+const dayInMonth = 30; //кол-во дней в месяце
+const dayInWeek = 7; //кол-во дней в неделе
+const dayOfWeek = 3; //день недели (0-пн, 1-вт, 2-ср, 3-чт, 4-пт, 5-сб, 6-вс)
+const firstDay = 29; //день, с которого начинается КАЛЕНДАРНЫЙ ЛИСТ, например, май начинается с пн 29 числа прошлого месяца
+
+function calendar(arr = [], day, monthDay, weekDay, dayWeek) {
+  arr = Array(5).fill().map(() => Array());
+  arr.forEach((index) => {
+    while (day <= monthDay + 1 && index.length < weekDay) {
+      index.push(day++);
+    if (day === monthDay + 1 && index.length < weekDay) {
+        day = 1;
+      }
+    }
+    day + 1;
+    index.forEach((item) => {
+      if (index.indexOf(item) === dayWeek) {
+        console.log('число, соответствующее ' + dayWeek + ' : ' + item);
+      }
+    });
+  });
+  console.log(arr);
+}
+
+calendar(days, firstDay, dayInMonth, dayInWeek, dayOfWeek);
+//вводим пустой массив ("календарный лист")
+//вводим день, с которого календарный лист начинается
+//вводим кол-во дней в месяце и в неделе
+//вводим "день недели" и получаем все соответствующие даты
