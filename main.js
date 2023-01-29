@@ -318,159 +318,159 @@ newTrip(data, loc);
 
 const hotels = [
   {
-    name: "Hotel Leopold",
-    city: "Saint Petersburg",
-    country: "Russia",
+    name: 'Hotel Leopold',
+    city: 'Saint Petersburg',
+    country: 'Russia',
   },
   {
-    name: "Apartment Sunshine",
-    city: "Santa Cruz de Tenerife",
-    country: "Spain",
+    name: 'Apartment Sunshine',
+    city: 'Santa Cruz de Tenerife',
+    country: 'Spain',
   },
   {
-    name: "Villa Kunerad",
-    city: "Vysokie Tatry",
-    country: "Slowakia",
+    name: 'Villa Kunerad',
+    city: 'Vysokie Tatry',
+    country: 'Slowakia',
   },
   {
-    name: "Hostel Friendship",
-    city: "Berlin",
-    country: "Germany",
+    name: 'Hostel Friendship',
+    city: 'Berlin',
+    country: 'Germany',
   },
   {
-    name: "Radisson Blu Hotel",
-    city: "Kyiv",
-    country: "Ukraine",
+    name: 'Radisson Blu Hotel',
+    city: 'Kyiv',
+    country: 'Ukraine',
   },
   {
-    name: "Paradise Hotel",
-    city: "Guadalupe",
-    country: "Mexico",
+    name: 'Paradise Hotel',
+    city: 'Guadalupe',
+    country: 'Mexico',
   },
   {
-    name: "Hotel Grindewald",
-    city: "Interlaken",
-    country: "Switzerland",
+    name: 'Hotel Grindewald',
+    city: 'Interlaken',
+    country: 'Switzerland',
   },
   {
-    name: "The Andaman Resort",
-    city: "Port Dickson",
-    country: "Malaysia",
+    name: 'The Andaman Resort',
+    city: 'Port Dickson',
+    country: 'Malaysia',
   },
   {
-    name: "Virgin Hotel",
-    city: "Chicago",
-    country: "USA",
+    name: 'Virgin Hotel',
+    city: 'Chicago',
+    country: 'USA',
   },
   {
-    name: "Grand Beach Resort",
-    city: "Dubai",
-    country: "United Arab Emirates",
+    name: 'Grand Beach Resort',
+    city: 'Dubai',
+    country: 'United Arab Emirates',
   },
   {
-    name: "Shilla Stay",
-    city: "Seoul",
-    country: "South Korea",
+    name: 'Shilla Stay',
+    city: 'Seoul',
+    country: 'South Korea',
   },
   {
-    name: "San Firenze Suites",
-    city: "Florence",
-    country: "Italy",
+    name: 'San Firenze Suites',
+    city: 'Florence',
+    country: 'Italy',
   },
   {
-    name: "The Andaman Resort",
-    city: "Port Dickson",
-    country: "Malaysia",
+    name: 'The Andaman Resort',
+    city: 'Port Dickson',
+    country: 'Malaysia',
   },
   {
-    name: "Black Penny Villas",
-    city: "BTDC, Nuca Dua",
-    country: "Indonesia",
+    name: 'Black Penny Villas',
+    city: 'BTDC, Nuca Dua',
+    country: 'Indonesia',
   },
   {
-    name: "Koko Hotel",
-    city: "Tokyo",
-    country: "Japan",
+    name: 'Koko Hotel',
+    city: 'Tokyo',
+    country: 'Japan',
   },
   {
-    name: "Ramada Plaza",
-    city: "Istanbul",
-    country: "Turkey",
+    name: 'Ramada Plaza',
+    city: 'Istanbul',
+    country: 'Turkey',
   },
   {
-    name: "Waikiki Resort Hotel",
-    city: "Hawaii",
-    country: "USA",
+    name: 'Waikiki Resort Hotel',
+    city: 'Hawaii',
+    country: 'USA',
   },
   {
-    name: "Puro Hotel",
-    city: "Krakow",
-    country: "Poland",
+    name: 'Puro Hotel',
+    city: 'Krakow',
+    country: 'Poland',
   },
   {
-    name: "Asma Suites",
-    city: "Santorini",
-    country: "Greece",
+    name: 'Asma Suites',
+    city: 'Santorini',
+    country: 'Greece',
   },
   {
-    name: "Cityden Apartments",
-    city: "Amsterdam",
-    country: "Netherlands",
+    name: 'Cityden Apartments',
+    city: 'Amsterdam',
+    country: 'Netherlands',
   },
   {
-    name: "Mandarin Oriental",
-    city: "Miami",
-    country: "USA",
+    name: 'Mandarin Oriental',
+    city: 'Miami',
+    country: 'USA',
   },
   {
-    name: "Concept Terrace Hotel",
-    city: "Rome",
-    country: "Italy",
+    name: 'Concept Terrace Hotel',
+    city: 'Rome',
+    country: 'Italy',
   },
   {
-    name: "Ponta Mar Hotel",
-    city: "Fortaleza",
-    country: "Brazil",
+    name: 'Ponta Mar Hotel',
+    city: 'Fortaleza',
+    country: 'Brazil',
   },
   {
-    name: "Four Seasons Hotel",
-    city: "Sydney",
-    country: "Australia",
+    name: 'Four Seasons Hotel',
+    city: 'Sydney',
+    country: 'Australia',
   },
   {
-    name: "Le Meridien",
-    city: "Nice",
-    country: "France",
+    name: 'Le Meridien',
+    city: 'Nice',
+    country: 'France',
   },
   {
-    name: "Apart Neptun",
-    city: "Gdansk",
-    country: "Poland",
+    name: 'Apart Neptun',
+    city: 'Gdansk',
+    country: 'Poland',
   },
   {
-    name: "Lux Isla",
-    city: "Ibiza",
-    country: "Spain",
+    name: 'Lux Isla',
+    city: 'Ibiza',
+    country: 'Spain',
   },
   {
-    name: "Nox Hostel",
-    city: "London",
-    country: "UK",
+    name: 'Nox Hostel',
+    city: 'London',
+    country: 'UK',
   },
   {
-    name: "Leonardo Vienna",
-    city: "Vienna",
-    country: "Austria",
+    name: 'Leonardo Vienna',
+    city: 'Vienna',
+    country: 'Austria',
   },
   {
-    name: "Adagio Aparthotel",
-    city: "Edinburgh",
-    country: "UK",
+    name: 'Adagio Aparthotel',
+    city: 'Edinburgh',
+    country: 'UK',
   },
   {
-    name: "Steigenberger Hotel",
-    city: "Hamburg",
-    country: "Germany",
+    name: 'Steigenberger Hotel',
+    city: 'Hamburg',
+    country: 'Germany',
   },
 ];
 
@@ -507,11 +507,13 @@ const dayOfWeek = 3; //день недели (0-пн, 1-вт, 2-ср, 3-чт, 4-
 const firstDay = 29; //день, с которого начинается КАЛЕНДАРНЫЙ ЛИСТ, например, май начинается с пн 29 числа прошлого месяца
 
 function calendar(arr = [], day, monthDay, weekDay, dayWeek) {
-  arr = Array(5).fill().map(() => Array());
+  arr = Array(5)
+    .fill()
+    .map(() => Array());
   arr.forEach((index) => {
     while (day <= monthDay + 1 && index.length < weekDay) {
       index.push(day++);
-    if (day === monthDay + 1 && index.length < weekDay) {
+      if (day === monthDay + 1 && index.length < weekDay) {
         day = 1;
       }
     }
@@ -530,3 +532,101 @@ calendar(days, firstDay, dayInMonth, dayInWeek, dayOfWeek);
 //вводим день, с которого календарный лист начинается
 //вводим кол-во дней в месяце и в неделе
 //вводим "день недели" и получаем все соответствующие даты
+
+const obj1 = {
+  a: 'a',
+  b: {
+    a: 'a',
+    b: 'b',
+    c: {
+      a: 1,
+    },
+  },
+};
+const obj2 = {
+  b: {
+    c: {
+      a: 1,
+    },
+    b: 'b',
+    a: 'a',
+  },
+  a: 'a',
+};
+const obj3 = {
+  a: {
+    c: {
+      a: 'a',
+    },
+    b: 'b',
+    a: 'a',
+  },
+  b: 'b',
+};
+
+const deepEqual = (object1, object2) => {
+  if (
+    Object.getOwnPropertyNames(object1).length ===
+    Object.getOwnPropertyNames(object2).length
+  ) {
+    if (
+      Object.getOwnPropertyNames(object1).join('') ===
+        Object.getOwnPropertyNames(object2).join('') ||
+      Object.getOwnPropertyNames(object1).reverse().join('') ===
+        Object.getOwnPropertyNames(object2).join('')
+    ) {
+      for (let i = 0; i < Object.getOwnPropertyNames(object1).length; i++) {
+        const obj = Object.getOwnPropertyNames(object1)[i];
+        if (
+          typeof object1[obj] === 'object' &&
+          typeof object2[obj] === 'object'
+        ) {
+          if (
+            Object.getOwnPropertyNames(object1[obj]).join('') ===
+              Object.getOwnPropertyNames(object2[obj]).join('') ||
+            Object.getOwnPropertyNames(object1[obj]).reverse().join('') ===
+              Object.getOwnPropertyNames(object2[obj]).join('')
+          ) {
+            for (
+              let i = 0;
+              i < Object.getOwnPropertyNames(object1[obj]).length;
+              i++
+            ) {
+              const ob = Object.getOwnPropertyNames(object1[obj])[i];
+              if (
+                typeof object1[obj][ob] === 'object' &&
+                typeof object2[obj][ob] === 'object'
+              ) {
+                if (
+                  Object.getOwnPropertyNames(object1[obj][ob]).join('') ===
+                    Object.getOwnPropertyNames(object2[obj][ob]).join('') ||
+                  Object.getOwnPropertyNames(object1[obj][ob])
+                    .reverse()
+                    .join('') ===
+                    Object.getOwnPropertyNames(object2[obj][ob]).join('')
+                ) {
+                  return true;
+                }
+              } else if (
+                typeof object1[obj][ob] !== 'object' &&
+                typeof object2[obj][ob] !== 'object'
+              ) {
+                return true;
+              }
+            }
+          }
+        } else if (
+          typeof object1[obj] !== 'object' &&
+          typeof object2[obj] === 'object'
+        ) {
+          return false;
+        }
+      }
+    }
+  }
+  return false;
+};
+
+console.log(deepEqual(obj1, obj2));
+console.log(deepEqual(obj1, obj3));
+console.log(deepEqual(obj2, obj3));
