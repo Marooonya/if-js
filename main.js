@@ -1,37 +1,37 @@
-let user = "John Doe";
+let user = 'John Doe';
 console.log(user);
 
-let student = "Masha";
+let student = 'Masha';
 console.log(student);
 
-user = student; //переопределение переменной
+user = student;
 console.log(user);
 
-console.log("----------");
+console.log('----------');
 
 let test = 1;
-test++; //к переменной прибавили 1, теперь ее значение - 2
-test += test; //к переменной, значение которой уже 2, прибавляем значение test (=2)
-console.log(test); //в итоге получаем 2+2=4
+test++;
+test += test;
+console.log(test);
 
-test = false; //булевое значение
-test = !test; //операция "переворачивает" булевое значение
-console.log(test); //выводит true, т.к. поменяли с false на true с пом. !
-console.log(typeof test); //выводит тип переменной (является булевой, т.к. имеет первонач. значение false)
+test = false;
+test = !test;
+console.log(test);
+console.log(typeof test);
 
-console.log("----------");
+console.log('----------');
 
 let numb = [2, 3, 5, 8];
 console.log(numb);
 
 let sum = 1;
 
-for (let i = 0; i < 4; i++) {
+for (let i = 0; i < numb.length; i++) {
   sum *= numb[i];
 }
 console.log(sum);
 
-console.log("----------");
+console.log('----------');
 
 let numbers = [2, 5, 8, 15, 0, 6, 20, 3];
 console.log(numbers);
@@ -42,7 +42,7 @@ for (let i = 0; i < 8; i++) {
   }
 }
 
-console.log("----------");
+console.log('----------');
 
 let arr = [2, 5, 8, 15, 0, 6, 20, 3];
 console.log(arr);
