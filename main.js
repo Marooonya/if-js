@@ -4,20 +4,20 @@ console.log(user);
 let student = 'Masha';
 console.log(student);
 
-user = student; //переопределение переменной
+user = student;
 console.log(user);
 
 console.log('----------');
 
 let test = 1;
-test++; //к переменной прибавили 1, теперь ее значение - 2
-test += test; //к переменной, значение которой уже 2, прибавляем значение test (=2)
-console.log(test); //в итоге получаем 2+2=4
+test++;
+test += test;
+console.log(test);
 
-test = false; //булевое значение
-test = !test; //операция "переворачивает" булевое значение
-console.log(test); //выводит true, т.к. поменяли с false на true с пом. !
-console.log(typeof test); //выводит тип переменной (является булевой, т.к. имеет первонач. значение false)
+test = false;
+test = !test;
+console.log(test);
+console.log(typeof test);
 
 console.log('----------');
 
@@ -26,7 +26,7 @@ console.log(numb);
 
 let sum = 1;
 
-for (let i = 0; i < 4; i++) {
+for (let i = 0; i < numb.length; i++) {
   sum *= numb[i];
 }
 console.log(sum);
@@ -55,87 +55,45 @@ for (let i = 0; i < 8; i++) {
 
 console.log('----------');
 
-const palindrome = function (string) {//обозначаем функцию
-  for (let i = 0; i < string.length / 2; i++) {//"пробегаем" буквы до середины, т.к. сравниваем первую половину с зеркально отраженной правой
-    if (string[i] === string[string.length - i - 1]) {//1-ый эл. с индексом 0 (например, ш) сравниваем с последним(длина "шалаш" - 5, отнимаем i, чтобы приблизиться к середине слова, и 1, т.к. индекс последнего элемента на 1 меньше длины всего слова)
-      return true; //вывод
-    }
-    {
-      return false;
-    }
+const palindrome = (string) => {
+  for (let i = 0; i < string.length / 2; i++) {
+    if (string[i] === string[string.length - i - 1]) return true;
   }
+  return false;
 };
 
-const word_1 = 'шалаш';
-const word_2 = 'дома';
-const word_3 = 'дом мод';
+const word = 'шалаш';
 
-console.log(word_1);
-console.log(palindrome(word_1));
-
-console.log(word_2);
-console.log(palindrome(word_2));
-
-console.log(word_3);
-console.log(palindrome(word_3));
+console.log(word);
+console.log(palindrome(word));
 
 console.log('----------');
 
-const max = function (n_1, n_2) {//обозначаем функцию
-  if (n_1 > n_2) {
-    return n_1;//вывод
-  }
-  {
-    return n_2;
-  }
-};
+const max = (firstNumber, secondNumber) =>
+  firstNumber > secondNumber ? firstNumber : secondNumber;
 
-const num_1 = 4;
-const num_2 = 20;
+const a = 4;
+const b = 20;
 
-console.log(num_1, num_2);
-console.log(max(num_1, num_2));
-
-const min = function (n_1, n_2) {//обозначаем функцию
-  if (n_1 < n_2) {
-    return n_1;//вывод
-  }
-  {
-    return n_2;
-  }
-};
-
-const num1 = 87;
-const num2 = 10;
-
-console.log(num1, num2);
-console.log(min(num1, num2));
-
-const max_min = (n_1, n_2) => (n_1 > n_2 ? n_1 : n_2); //max
-// const min_max = (n_1, n_2) => n_1 < n_2 ? n_1 : n_2; - min
-const a = 12;
-const b = 94;
 console.log(a, b);
-console.log(max_min(a, b));
+console.log(max(a, b));
+
+const min = (firstNumber, secondNumber) =>
+  firstNumber < secondNumber ? firstNumber : secondNumber;
+
+const x = 87;
+const y = 10;
+
+console.log(x, y);
+console.log(min(x, y));
 
 console.log('----------');
 
-const Zero = function (arr = []) {//обозначаем функцию
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] < 100) {
-      if (arr[i] % 10 === 0) {
-        let Z = arr[i] / 10;
-        arr[i] = Z + 'zero';
-      }
-    } else {
-      let Z = arr[i] / 100;
-      arr[i] = Z + 'zerozero';
-    }
-  }
-  return arr;
+const replaceZero = (arr = []) => {
+  console.log(arr.join(',').replaceAll('0', 'zero').split(','));
 };
 
 const mas = [71, 10, 19, 3, 7, 50, 27, 38, 100, 45];
 
 console.log(mas);
-console.log(Zero(mas));
+replaceZero(mas);
