@@ -36,7 +36,7 @@ console.log('----------');
 let numbers = [2, 5, 8, 15, 0, 6, 20, 3];
 console.log(numbers);
 
-for (let i = 0; i < 8; i++) {
+for (let i = 0; i < numbers.length; i++) {
   if (numbers[i] > 5 && numbers[i] < 10) {
     console.log(numbers[i]);
   }
@@ -47,7 +47,7 @@ console.log('----------');
 let arr = [2, 5, 8, 15, 0, 6, 20, 3];
 console.log(arr);
 
-for (let i = 0; i < 8; i++) {
+for (let i = 0; i < arr.length; i++) {
   if (arr[i] % 2 === 0) {
     console.log(arr[i]);
   }
