@@ -52,3 +52,54 @@ for (let i = 0; i < arr.length; i++) {
     console.log(arr[i]);
   }
 }
+
+console.log('----------');
+
+const palindrome = (string) => {
+  for (let i = 0; i < string.length / 2; i++) {
+    if (string[i] === string[string.length - i - 1]) {
+      return true;
+    }
+  }
+  return false;
+};
+
+const word = 'шалаш';
+
+console.log(palindrome(word));
+
+console.log('----------');
+
+const max = (a, b) => (a > b ? a : b);
+
+const a = 4;
+const b = 20;
+
+console.log(max(a, b));
+
+const min = (a, b) => (a < b ? a : b);
+
+const x = 87;
+const y = 10;
+
+console.log(min(x, y));
+
+console.log('----------');
+
+const array = [71, 10, 19, 3, 7, 50, 27, 38, 100, 45];
+
+const replaceZero = (arr) => arr.join(',').replace(/0/g, 'zero').split(',');
+
+const replaceZero2 = (arr) => {
+  const changedArray = [...arr];
+
+  for (let i = 0; i < changedArray.length; i++) {
+    if (String(changedArray[i]).includes('0')) {
+      changedArray[i] = String(changedArray[i]).replace(/0/g, 'zero');
+    }
+  }
+  return changedArray;
+};
+
+console.log(replaceZero2(array));
+console.log(replaceZero(array));
