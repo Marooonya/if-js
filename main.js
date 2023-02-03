@@ -36,7 +36,7 @@ console.log('----------');
 let numbers = [2, 5, 8, 15, 0, 6, 20, 3];
 console.log(numbers);
 
-for (let i = 0; i < 8; i++) {
+for (let i = 0; i < numbers.length; i++) {
   if (numbers[i] > 5 && numbers[i] < 10) {
     console.log(numbers[i]);
   }
@@ -47,7 +47,7 @@ console.log('----------');
 let arr = [2, 5, 8, 15, 0, 6, 20, 3];
 console.log(arr);
 
-for (let i = 0; i < 8; i++) {
+for (let i = 0; i < arr.length; i++) {
   if (arr[i] % 2 === 0) {
     console.log(arr[i]);
   }
@@ -57,43 +57,49 @@ console.log('----------');
 
 const palindrome = (string) => {
   for (let i = 0; i < string.length / 2; i++) {
-    if (string[i] === string[string.length - i - 1]) return true;
+    if (string[i] === string[string.length - i - 1]) {
+      return true;
+    }
   }
   return false;
 };
 
 const word = 'шалаш';
 
-console.log(word);
 console.log(palindrome(word));
 
 console.log('----------');
 
-const max = (firstNumber, secondNumber) =>
-  firstNumber > secondNumber ? firstNumber : secondNumber;
+const max = (a, b) => (a > b ? a : b);
 
 const a = 4;
 const b = 20;
 
-console.log(a, b);
 console.log(max(a, b));
 
-const min = (firstNumber, secondNumber) =>
-  firstNumber < secondNumber ? firstNumber : secondNumber;
+const min = (a, b) => (a < b ? a : b);
 
 const x = 87;
 const y = 10;
 
-console.log(x, y);
 console.log(min(x, y));
 
 console.log('----------');
 
-const replaceZero = (arr = []) => {
-  console.log(arr.join(',').replaceAll('0', 'zero').split(','));
+const array = [71, 10, 19, 3, 7, 50, 27, 38, 100, 45];
+
+const replaceZero = (arr) => arr.join(',').replace(/0/g, 'zero').split(',');
+
+const replaceZero2 = (arr) => {
+  const changedArray = [...arr];
+
+  for (let i = 0; i < changedArray.length; i++) {
+    if (String(changedArray[i]).includes('0')) {
+      changedArray[i] = String(changedArray[i]).replace(/0/g, 'zero');
+    }
+  }
+  return changedArray;
 };
 
-const mas = [71, 10, 19, 3, 7, 50, 27, 38, 100, 45];
-
-console.log(mas);
-replaceZero(mas);
+console.log(replaceZero2(array));
+console.log(replaceZero(array));
