@@ -106,53 +106,28 @@ console.log(replaceZero(array));
 
 console.log('----------');
 
-function Sum() {
-  const first_num = 2;
-  const second_num = 5;
+const sum_2 = a => b => a + b;
 
-  return function operation() {
-    return first_num + second_num;
-  };
-}
-console.log(Sum(2)(5));
+console.log(sum_2(2)(5));
 
 console.log('----------');
 
-const text1 = document.getElementById('text1');
-const text2 = document.getElementById('text2');
-const text3 = document.getElementById('text3');
+const differentColours = () => {
+  let i = 0;
+  return function (event) {
+    event.target.style.color = colours[i++];
+    if (colours.length === i) {
+      i = 0;
+    }
+  };
+};
+
 const colours = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
 
-differentColours1(colours);
-differentColours2(colours);
-differentColours3(colours);
+const text_1 = document.getElementById('text1');
+const text_2 = document.getElementById('text2');
+const text_3 = document.getElementById('text3');
 
-function differentColours1(arr = []) {
-  let i = 0;
-  return text1.addEventListener('click', (event) => {
-    event.target.style.color = arr[i++];
-    if (arr.length === i) {
-      i = 0;
-    }
-  });
-}
-
-function differentColours2(arr = []) {
-  let i = 0;
-  return text2.addEventListener('click', (event) => {
-    event.target.style.color = arr[i++];
-    if (arr.length === i) {
-      i = 0;
-    }
-  });
-}
-
-function differentColours3(arr = []) {
-  let i = 0;
-  return text3.addEventListener('click', (event) => {
-    event.target.style.color = arr[i++];
-    if (arr.length === i) {
-      i = 0;
-    }
-  });
-}
+text_1.addEventListener('click', differentColours());
+text_2.addEventListener('click', differentColours());
+text_3.addEventListener('click', differentColours());
