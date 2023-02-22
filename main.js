@@ -55,7 +55,7 @@ for (let i = 0; i < arr.length; i++) {
 
 console.log('----------');
 
-const palindrome = (string) => {
+export const palindrome = (string) => {
   for (let i = 0; i < string.length / 2; i++) {
     if (string[i] === string[string.length - i - 1]) {
       return true;
@@ -106,7 +106,7 @@ console.log(replaceZero(array));
 
 console.log('----------');
 
-const sum_2 = a => b => a + b;
+const sum_2 = (a) => (b) => a + b;
 
 console.log(sum_2(2)(5));
 
@@ -114,8 +114,10 @@ console.log('----------');
 
 const differentColours = () => {
   let i = 0;
-  return function (event) {
+
+  return (event) => {
     event.target.style.color = colours[i++];
+
     if (colours.length === i) {
       i = 0;
     }
@@ -134,17 +136,11 @@ text_3.addEventListener('click', differentColours());
 
 console.log('----------');
 
-// function replacer(match, p1, p2, p3) {
-//     return [p3, p2, p1].join('.');
-// }
-//
-// const newString = '2020-11-26'.replace(/(\d*)[-](\d*)[-](\d*)/g, replacer);
-// console.log(newString);
-
-function date(str) {
+const date = (str) => {
   const p = /(\d*)[-](\d*)[-](\d*)/g;
   return str.replace(p, (match, p1, p2, p3) => [p3, p2, p1].join('.'));
-}
+};
+
 console.log(date('2020-11-26'));
 
 console.log('----------');
@@ -154,77 +150,62 @@ const data = [
     country: 'Russia',
     city: 'Saint Petersburg',
     hotel: 'Hotel Leopold',
-    toString: function () {
-      return this.city + ' ' + this.country + ' ' + this.hotel;
-    },
   },
   {
     country: 'Spain',
     city: 'Santa Cruz de Tenerife',
     hotel: 'Apartment Sunshine',
-    toString: function () {
-      return this.city + ' ' + this.country + ' ' + this.hotel;
-    },
   },
   {
     country: 'Slowakia',
     city: 'Vysokie Tatry',
     hotel: 'Villa Kunerad',
-    toString: function () {
-      return this.city + ' ' + this.country + ' ' + this.hotel;
-    },
   },
   {
     country: 'Germany',
     city: 'Berlin',
     hotel: 'Hostel Friendship',
-    toString: function () {
-      return this.city + ' ' + this.country + ' ' + this.hotel;
-    },
   },
   {
     country: 'Indonesia',
     city: 'Bali',
     hotel: 'Ubud Bali Resort&SPA',
-    toString: function () {
-      return this.city + ' ' + this.country + ' ' + this.hotel;
-    },
   },
   {
     country: 'Netherlands',
     city: 'Rotterdam',
     hotel: 'King Kong Hostel',
-    toString: function () {
-      return this.city + ' ' + this.country + ' ' + this.hotel;
-    },
   },
   {
     country: 'Marocco',
     city: 'Ourika',
     hotel: 'Rokoko Hotel',
-    toString: function () {
-      return this.city + ' ' + this.country + ' ' + this.hotel;
-    },
   },
   {
     country: 'Germany',
     city: 'Berlin',
     hotel: 'Hotel Rehberge Berlin Mitte',
-    toString: function () {
-      return this.city + ' ' + this.country + ' ' + this.hotel;
-    },
   },
 ];
 
-const loc = 'vil';
+const place = 'er';
 
-function trip(arr = [], str) {
-  const reg = new RegExp(str);
+const findLocation = (arr, str) => {
+  const foundLocation = [];
+
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i].toString().toLowerCase().match(reg)) {
-      console.log(arr[i].toString());
+    if (
+      Object.values(arr[i]).join(', ').toLowerCase().includes(str.toLowerCase())
+    ) {
+      foundLocation.push(Object.values(arr[i]).join(', '));
     }
   }
-}
 
-trip(data, loc);
+  if (!foundLocation.length) {
+    return 'Not found';
+  }
+
+  return foundLocation;
+};
+
+console.log(findLocation(data, place));
