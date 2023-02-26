@@ -1,7 +1,7 @@
 let user = 'John Doe';
 console.log(user);
 
-let student = 'Masha';
+const student = 'Masha';
 console.log(student);
 
 user = student;
@@ -21,7 +21,7 @@ console.log(typeof test);
 
 console.log('----------');
 
-let numb = [2, 3, 5, 8];
+const numb = [2, 3, 5, 8];
 console.log(numb);
 
 let sum = 1;
@@ -33,7 +33,7 @@ console.log(sum);
 
 console.log('----------');
 
-let numbers = [2, 5, 8, 15, 0, 6, 20, 3];
+const numbers = [2, 5, 8, 15, 0, 6, 20, 3];
 console.log(numbers);
 
 for (let i = 0; i < numbers.length; i++) {
@@ -44,7 +44,7 @@ for (let i = 0; i < numbers.length; i++) {
 
 console.log('----------');
 
-let arr = [2, 5, 8, 15, 0, 6, 20, 3];
+const arr = [2, 5, 8, 15, 0, 6, 20, 3];
 console.log(arr);
 
 for (let i = 0; i < arr.length; i++) {
@@ -55,7 +55,7 @@ for (let i = 0; i < arr.length; i++) {
 
 console.log('----------');
 
-const palindrome = (string) => {
+export const palindrome = (string) => {
   for (let i = 0; i < string.length / 2; i++) {
     if (string[i] === string[string.length - i - 1]) {
       return true;
@@ -103,3 +103,109 @@ const replaceZero2 = (arr) => {
 
 console.log(replaceZero2(array));
 console.log(replaceZero(array));
+
+console.log('----------');
+
+const sum_2 = (a) => (b) => a + b;
+
+console.log(sum_2(2)(5));
+
+console.log('----------');
+
+const differentColours = () => {
+  let i = 0;
+
+  return (event) => {
+    event.target.style.color = colours[i++];
+
+    if (colours.length === i) {
+      i = 0;
+    }
+  };
+};
+
+const colours = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
+
+const text_1 = document.getElementById('text1');
+const text_2 = document.getElementById('text2');
+const text_3 = document.getElementById('text3');
+
+text_1.addEventListener('click', differentColours());
+text_2.addEventListener('click', differentColours());
+text_3.addEventListener('click', differentColours());
+
+console.log('----------');
+
+const date = (str) => {
+  const p = /(\d*)[-](\d*)[-](\d*)/g;
+  return str.replace(p, (match, p1, p2, p3) => [p3, p2, p1].join('.'));
+};
+
+console.log(date('2020-11-26'));
+
+console.log('----------');
+
+const data = [
+  {
+    country: 'Russia',
+    city: 'Saint Petersburg',
+    hotel: 'Hotel Leopold',
+  },
+  {
+    country: 'Spain',
+    city: 'Santa Cruz de Tenerife',
+    hotel: 'Apartment Sunshine',
+  },
+  {
+    country: 'Slowakia',
+    city: 'Vysokie Tatry',
+    hotel: 'Villa Kunerad',
+  },
+  {
+    country: 'Germany',
+    city: 'Berlin',
+    hotel: 'Hostel Friendship',
+  },
+  {
+    country: 'Indonesia',
+    city: 'Bali',
+    hotel: 'Ubud Bali Resort&SPA',
+  },
+  {
+    country: 'Netherlands',
+    city: 'Rotterdam',
+    hotel: 'King Kong Hostel',
+  },
+  {
+    country: 'Marocco',
+    city: 'Ourika',
+    hotel: 'Rokoko Hotel',
+  },
+  {
+    country: 'Germany',
+    city: 'Berlin',
+    hotel: 'Hotel Rehberge Berlin Mitte',
+  },
+];
+
+const place = 'er';
+
+const findLocation = (arr, str) => {
+  const foundLocation = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (
+      Object.values(arr[i]).join(', ').toLowerCase().includes(str.toLowerCase())
+    ) {
+      foundLocation.push(Object.values(arr[i]).join(', '));
+    }
+  }
+
+  if (!foundLocation.length) {
+    return 'Not found';
+  }
+
+  return foundLocation;
+};
+
+console.log(findLocation(data, place));
