@@ -466,66 +466,31 @@ const obj3 = {
 };
 
 const deepEqual = (object1, object2) => {
-  if (
-    Object.getOwnPropertyNames(object1).length ===
-    Object.getOwnPropertyNames(object2).length
+  if (object1 === object2) {
+    return true;
+  } else if (
+    (object1 &&
+      object2 &&
+      typeof object1 === 'object' &&
+      typeof object2 === 'object' &&
+      Object.keys(object1).length === Object.keys(object2).length &&
+      Object.keys(object1).join('') === Object.keys(object2).join('')) ||
+    (object1 &&
+      object2 &&
+      typeof object1 === 'object' &&
+      typeof object2 === 'object' &&
+      Object.keys(object1).length === Object.keys(object2).length &&
+      Object.keys(object1).join('') === Object.keys(object2).reverse().join(''))
   ) {
-    if (
-      Object.getOwnPropertyNames(object1).join('') ===
-        Object.getOwnPropertyNames(object2).join('') ||
-      Object.getOwnPropertyNames(object1).reverse().join('') ===
-        Object.getOwnPropertyNames(object2).join('')
-    ) {
-      for (let i = 0; i < Object.getOwnPropertyNames(object1).length; i++) {
-        const obj = Object.getOwnPropertyNames(object1)[i];
-        if (
-          typeof object1[obj] === 'object' &&
-          typeof object2[obj] === 'object'
-        ) {
-          if (
-            Object.getOwnPropertyNames(object1[obj]).join('') ===
-              Object.getOwnPropertyNames(object2[obj]).join('') ||
-            Object.getOwnPropertyNames(object1[obj]).reverse().join('') ===
-              Object.getOwnPropertyNames(object2[obj]).join('')
-          ) {
-            for (
-              let i = 0;
-              i < Object.getOwnPropertyNames(object1[obj]).length;
-              i++
-            ) {
-              const ob = Object.getOwnPropertyNames(object1[obj])[i];
-              if (
-                typeof object1[obj][ob] === 'object' &&
-                typeof object2[obj][ob] === 'object'
-              ) {
-                if (
-                  Object.getOwnPropertyNames(object1[obj][ob]).join('') ===
-                    Object.getOwnPropertyNames(object2[obj][ob]).join('') ||
-                  Object.getOwnPropertyNames(object1[obj][ob])
-                    .reverse()
-                    .join('') ===
-                    Object.getOwnPropertyNames(object2[obj][ob]).join('')
-                ) {
-                  return true;
-                }
-              } else if (
-                typeof object1[obj][ob] !== 'object' &&
-                typeof object2[obj][ob] !== 'object'
-              ) {
-                return true;
-              }
-            }
-          }
-        } else if (
-          typeof object1[obj] !== 'object' &&
-          typeof object2[obj] === 'object'
-        ) {
-          return false;
-        }
-      }
+    for (let i = 0; i < Object.getOwnPropertyNames(object1).length; i++) {
+
+      return deepEqual(
+        object1[Object.getOwnPropertyNames(object1)[i]],
+        object2[Object.getOwnPropertyNames(object1)[i]],
+      );
+
     }
-  }
-  return false;
+  } else return false;
 };
 
 console.log(deepEqual(obj1, obj2));
