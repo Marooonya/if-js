@@ -411,6 +411,7 @@ const createCalendar = (daysInMonth, dayOfWeek, daysInWeek) => {
   const calendar = Array.from(Array(dayOfWeek >= 6 ? 6 : 5), () => [
     ...Array(daysInWeek),
   ]);
+
   let daysCreated = 1;
 
   for (let i = 0; i < calendar.length; i++) {
