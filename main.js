@@ -495,73 +495,6 @@ console.log(deepEqual(obj1, obj2));
 console.log(deepEqual(obj1, obj3));
 console.log(deepEqual(obj2, obj3));
 
-class User {
-  constructor(firstName, lastName) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
-
-  fullName() {
-    return `${this.firstName} ${this.lastName}`;
-  }
-}
-
-const user1 = new User('Вася', 'Петров');
-
-console.log(user1);
-console.log(user1.fullName());
-
-class Student extends User {
-  constructor(firstName, lastName, admissionYear, courseName) {
-    super(firstName, lastName);
-    this.admissionYear = admissionYear;
-    this.courseName = courseName;
-  }
-
-  course() {
-    if (2023 - this.admissionYear > 5 || 2023 - this.admissionYear < 1) {
-      return 'This person is not a student';
-    } else if (2023 - this.admissionYear <= 5) {
-      let studentCourse = 2023 - this.admissionYear;
-      return studentCourse + ' курс';
-    }
-  }
-}
-
-const student1 = new Student('Вася', 'Петров', 2020, 'java');
-
-console.log(student1);
-console.log(student1.course());
-
-class Students {
-  constructor(arr) {
-    this.arr = arr;
-  }
-
-  getInfo() {
-    const studentData = [];
-
-    this.arr.sort(function (a, b) {
-      return b.admissionYear - a.admissionYear;
-    });
-
-    this.arr.forEach((item) => {
-      studentData.push(
-        item.firstName +
-          ' ' +
-          item.lastName +
-          ' - ' +
-          item.courseName +
-          ' ' +
-          (2020 - item.admissionYear) +
-          ' курс',
-      );
-    });
-
-    return studentData;
-  }
-}
-
 const studentsData = [
   {
     firstName: 'Василий',
@@ -589,6 +522,63 @@ const studentsData = [
   },
 ];
 
-const students1 = new Students(studentsData);
+class User {
+  constructor(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
 
-console.log(students1.getInfo());
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+}
+
+const user1 = new User('Вася', 'Петров');
+
+console.log(user1);
+
+class Student extends User {
+  constructor(firstName, lastName, admissionYear, courseName) {
+    super(firstName, lastName);
+    this.admissionYear = admissionYear;
+    this.courseName = courseName;
+  }
+
+  get course() {
+    const currentYear = new Date().getFullYear();
+    return currentYear - this.admissionYear;
+  }
+}
+
+const student1 = new Student('Вася', 'Петров', 2020, 'java');
+
+console.log(student1);
+
+class Students {
+  constructor(studentsData) {
+    this.students = studentsData.reduce(
+      (acc, student) => [
+        ...acc,
+        new Student(
+          student.firstName,
+          student.lastName,
+          student.admissionYear,
+          student.courseName,
+        ),
+      ],
+      [],
+    );
+  }
+
+  getInfo() {
+    return this.students
+      .sort((a, b) => a.course - b.course)
+      .map(
+        (student) =>
+          `${student.fullName} - ${student.courseName}, ${student.course}`,
+      );
+  }
+}
+
+const students = new Students(studentsData);
+console.log(students.getInfo());
