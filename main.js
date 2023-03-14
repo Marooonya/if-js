@@ -55,7 +55,7 @@ for (let i = 0; i < arr.length; i++) {
 
 console.log('----------');
 
-export const palindrome = (string) => {
+const palindrome = (string) => {
   for (let i = 0; i < string.length / 2; i++) {
     if (string[i] === string[string.length - i - 1]) {
       return true;
@@ -209,3 +209,227 @@ const findLocation = (arr, str) => {
 };
 
 console.log(findLocation(data, place));
+
+console.log('----------');
+
+const newPalindrome = (str) => str.split('').reverse().join('') === str;
+
+console.log(newPalindrome('шалаш'));
+
+const newFindLocation = (arr, str) => {
+  const foundLocation = [];
+
+  arr.forEach((item) => {
+    if (
+      Object.values(item).join('').toLowerCase().includes(str.toLowerCase())
+    ) {
+      foundLocation.push(Object.values(item).join(', '));
+    }
+    if (!foundLocation.length) {
+      return 'Not found';
+    }
+  });
+
+  return foundLocation;
+};
+
+console.log(newFindLocation(data, place));
+
+const hotels = [
+  {
+    name: 'Hotel Leopold',
+    city: 'Saint Petersburg',
+    country: 'Russia',
+  },
+  {
+    name: 'Apartment Sunshine',
+    city: 'Santa Cruz de Tenerife',
+    country: 'Spain',
+  },
+  {
+    name: 'Villa Kunerad',
+    city: 'Vysokie Tatry',
+    country: 'Slowakia',
+  },
+  {
+    name: 'Hostel Friendship',
+    city: 'Berlin',
+    country: 'Germany',
+  },
+  {
+    name: 'Radisson Blu Hotel',
+    city: 'Kyiv',
+    country: 'Ukraine',
+  },
+  {
+    name: 'Paradise Hotel',
+    city: 'Guadalupe',
+    country: 'Mexico',
+  },
+  {
+    name: 'Hotel Grindewald',
+    city: 'Interlaken',
+    country: 'Switzerland',
+  },
+  {
+    name: 'The Andaman Resort',
+    city: 'Port Dickson',
+    country: 'Malaysia',
+  },
+  {
+    name: 'Virgin Hotel',
+    city: 'Chicago',
+    country: 'USA',
+  },
+  {
+    name: 'Grand Beach Resort',
+    city: 'Dubai',
+    country: 'United Arab Emirates',
+  },
+  {
+    name: 'Shilla Stay',
+    city: 'Seoul',
+    country: 'South Korea',
+  },
+  {
+    name: 'San Firenze Suites',
+    city: 'Florence',
+    country: 'Italy',
+  },
+  {
+    name: 'The Andaman Resort',
+    city: 'Port Dickson',
+    country: 'Malaysia',
+  },
+  {
+    name: 'Black Penny Villas',
+    city: 'BTDC, Nuca Dua',
+    country: 'Indonesia',
+  },
+  {
+    name: 'Koko Hotel',
+    city: 'Tokyo',
+    country: 'Japan',
+  },
+  {
+    name: 'Ramada Plaza',
+    city: 'Istanbul',
+    country: 'Turkey',
+  },
+  {
+    name: 'Waikiki Resort Hotel',
+    city: 'Hawaii',
+    country: 'USA',
+  },
+  {
+    name: 'Puro Hotel',
+    city: 'Krakow',
+    country: 'Poland',
+  },
+  {
+    name: 'Asma Suites',
+    city: 'Santorini',
+    country: 'Greece',
+  },
+  {
+    name: 'Cityden Apartments',
+    city: 'Amsterdam',
+    country: 'Netherlands',
+  },
+  {
+    name: 'Mandarin Oriental',
+    city: 'Miami',
+    country: 'USA',
+  },
+  {
+    name: 'Concept Terrace Hotel',
+    city: 'Rome',
+    country: 'Italy',
+  },
+  {
+    name: 'Ponta Mar Hotel',
+    city: 'Fortaleza',
+    country: 'Brazil',
+  },
+  {
+    name: 'Four Seasons Hotel',
+    city: 'Sydney',
+    country: 'Australia',
+  },
+  {
+    name: 'Le Meridien',
+    city: 'Nice',
+    country: 'France',
+  },
+  {
+    name: 'Apart Neptun',
+    city: 'Gdansk',
+    country: 'Poland',
+  },
+  {
+    name: 'Lux Isla',
+    city: 'Ibiza',
+    country: 'Spain',
+  },
+  {
+    name: 'Nox Hostel',
+    city: 'London',
+    country: 'UK',
+  },
+  {
+    name: 'Leonardo Vienna',
+    city: 'Vienna',
+    country: 'Austria',
+  },
+  {
+    name: 'Adagio Aparthotel',
+    city: 'Edinburgh',
+    country: 'UK',
+  },
+  {
+    name: 'Steigenberger Hotel',
+    city: 'Hamburg',
+    country: 'Germany',
+  },
+];
+
+const sortCountries = (arr) => {
+  const sortedCountries = {};
+
+  arr.forEach((item) => {
+    sortedCountries[item.country]
+      ? sortedCountries[item.country].push(item.city)
+      : (sortedCountries[item.country] = [item.city]);
+  });
+
+  return sortedCountries;
+};
+
+console.log(sortCountries(hotels));
+
+const createCalendar = (daysInMonth, dayOfWeek, daysInWeek) => {
+  const calendar = Array.from(Array(dayOfWeek >= 6 ? 6 : 5), () => [
+    ...Array(daysInWeek),
+  ]);
+  let daysCreated = 1;
+
+  for (let i = 0; i < calendar.length; i++) {
+    for (let j = 0; j < calendar[i].length; j++) {
+      if (i === 0 && j < dayOfWeek) {
+        calendar[i][j] = daysInMonth - dayOfWeek + j + 1;
+        continue;
+      }
+
+      calendar[i][j] = daysCreated;
+      daysCreated++;
+
+      if (daysCreated > daysInMonth) {
+        daysCreated = 1;
+      }
+    }
+  }
+
+  console.log(calendar);
+};
+
+createCalendar(30, 7, 7);
