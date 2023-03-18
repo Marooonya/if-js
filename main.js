@@ -126,13 +126,13 @@ const differentColours = () => {
 
 const colours = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
 
-// const text_1 = document.getElementById('text1');
+const text_1 = document.getElementById('text1');
 const text_2 = document.getElementById('text2');
 const text_3 = document.getElementById('text3');
-
+//
 // text_1.addEventListener('click', differentColours());
-text_2.addEventListener('click', differentColours());
-text_3.addEventListener('click', differentColours());
+// text_2.addEventListener('click', differentColours());
+// text_3.addEventListener('click', differentColours());
 
 console.log('----------');
 
@@ -583,61 +583,33 @@ class Students {
 const students = new Students(studentsData);
 console.log(students.getInfo());
 
-// const color = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
-// const dataa = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
+const changeTextColor = (text) => {
+  const iteratorRange = {
+    colors: ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'],
+    from: 0,
+    to: 4,
 
-const colors = {
-  data: ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'],
-
-  [Symbol.iterator]() {
-    return this;
+    [Symbol.iterator]() {
+      return this;
     },
-  next() {
-    // let i = 0;
-    if (this.current === undefined) {
-      this.current = this.data[0];
-    }
 
-    // this.current++
-    // i+=1;
-
-    if (this.current >= this.data[4]) {
-      return {
-        done: true,
-        // value: this.current++
+    next() {
+      if (this.current === undefined) {
+        this.current = this.from;
       }
-       // this.current = this.data[0];
+      text.style.color = this.colors[this.current];
+      this.current++;
+      if (this.current >= this.to + 1) {
+        this.current = this.from
+      }
     }
-
-     return {
-       done: false,
-       value: this.current++
-     }
-  },
-};
-// const changeStyle = id => event => {//   event.target.style.color = colors.next(id).value;// };
-// for (const value of colors) {
-//   console.log(value);
-// }
-
-// console.log(colos);
-
-// const changeStyle = id => event => {
-//   event.target.style.color = colors.next(id).value;
-//};
-
-// for (const value of colos) {
-//   console.log(value);
-// }
-//
-const text_1 = document.getElementById('text1');
-// const text_2 = document.getElementById('text2');
-// const text_3 = document.getElementById('text3');
-
-text_1.addEventListener('click', (event) => {
-  for (const value of colors) {
-    event.target.style.color = value;
   }
-  });
-// text_2.addEventListener('click', changeStyle);
-// text_3.addEventListener('click', changeStyle);
+
+  return () => {
+    iteratorRange.next()
+  }
+}
+
+text_1.addEventListener('click', changeTextColor(text_1));
+text_2.addEventListener('click', changeTextColor(text_2));
+text_3.addEventListener('click', changeTextColor(text_3));
