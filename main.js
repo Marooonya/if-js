@@ -433,3 +433,66 @@ const createCalendar = (daysInMonth, dayOfWeek, daysInWeek) => {
 };
 
 createCalendar(30, 7, 7);
+
+const obj1 = {
+  a: 'a',
+  b: {
+    a: 'a',
+    b: 'b',
+    c: {
+      a: 1,
+    },
+  },
+};
+const obj2 = {
+  b: {
+    c: {
+      a: 1,
+    },
+    b: 'b',
+    a: 'a',
+  },
+  a: 'a',
+};
+const obj3 = {
+  a: {
+    c: {
+      a: 'a',
+    },
+    b: 'b',
+    a: 'a',
+  },
+  b: 'b',
+};
+
+const deepEqual = (object1, object2) => {
+  if (object1 === object2) {
+    return true;
+  } else if (
+    (object1 &&
+      object2 &&
+      typeof object1 === 'object' &&
+      typeof object2 === 'object' &&
+      Object.keys(object1).length === Object.keys(object2).length &&
+      Object.keys(object1).join('') === Object.keys(object2).join('')) ||
+    (object1 &&
+      object2 &&
+      typeof object1 === 'object' &&
+      typeof object2 === 'object' &&
+      Object.keys(object1).length === Object.keys(object2).length &&
+      Object.keys(object1).join('') === Object.keys(object2).reverse().join(''))
+  ) {
+    for (let i = 0; i < Object.getOwnPropertyNames(object1).length; i++) {
+
+      return deepEqual(
+        object1[Object.getOwnPropertyNames(object1)[i]],
+        object2[Object.getOwnPropertyNames(object1)[i]],
+      );
+
+    }
+  } else return false;
+};
+
+console.log(deepEqual(obj1, obj2));
+console.log(deepEqual(obj1, obj3));
+console.log(deepEqual(obj2, obj3));
