@@ -129,10 +129,10 @@ const colours = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
 const text_1 = document.getElementById('text1');
 const text_2 = document.getElementById('text2');
 const text_3 = document.getElementById('text3');
-
-text_1.addEventListener('click', differentColours());
-text_2.addEventListener('click', differentColours());
-text_3.addEventListener('click', differentColours());
+//
+// text_1.addEventListener('click', differentColours());
+// text_2.addEventListener('click', differentColours());
+// text_3.addEventListener('click', differentColours());
 
 console.log('----------');
 
@@ -582,3 +582,34 @@ class Students {
 
 const students = new Students(studentsData);
 console.log(students.getInfo());
+
+const changeTextColor = (text) => {
+  const iteratorRange = {
+    colors: ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'],
+    from: 0,
+    to: 4,
+
+    [Symbol.iterator]() {
+      return this;
+    },
+
+    next() {
+      if (this.current === undefined) {
+        this.current = this.from;
+      }
+      text.style.color = this.colors[this.current];
+      this.current++;
+      if (this.current >= this.to + 1) {
+        this.current = this.from
+      }
+    }
+  }
+
+  return () => {
+    iteratorRange.next()
+  }
+}
+
+text_1.addEventListener('click', changeTextColor(text_1));
+text_2.addEventListener('click', changeTextColor(text_2));
+text_3.addEventListener('click', changeTextColor(text_3));
