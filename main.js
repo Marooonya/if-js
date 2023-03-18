@@ -483,12 +483,10 @@ const deepEqual = (object1, object2) => {
       Object.keys(object1).join('') === Object.keys(object2).reverse().join(''))
   ) {
     for (let i = 0; i < Object.getOwnPropertyNames(object1).length; i++) {
-
       return deepEqual(
         object1[Object.getOwnPropertyNames(object1)[i]],
         object2[Object.getOwnPropertyNames(object1)[i]],
       );
-
     }
   } else return false;
 };
@@ -496,3 +494,91 @@ const deepEqual = (object1, object2) => {
 console.log(deepEqual(obj1, obj2));
 console.log(deepEqual(obj1, obj3));
 console.log(deepEqual(obj2, obj3));
+
+const studentsData = [
+  {
+    firstName: 'Василий',
+    lastName: 'Петров',
+    admissionYear: 2019,
+    courseName: 'Java',
+  },
+  {
+    firstName: 'Иван',
+    lastName: 'Иванов',
+    admissionYear: 2018,
+    courseName: 'JavaScript',
+  },
+  {
+    firstName: 'Александр',
+    lastName: 'Федоров',
+    admissionYear: 2017,
+    courseName: 'Python',
+  },
+  {
+    firstName: 'Николай',
+    lastName: 'Петров',
+    admissionYear: 2019,
+    courseName: 'Android',
+  },
+];
+
+class User {
+  constructor(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+}
+
+const user1 = new User('Вася', 'Петров');
+
+console.log(user1);
+
+class Student extends User {
+  constructor(firstName, lastName, admissionYear, courseName) {
+    super(firstName, lastName);
+    this.admissionYear = admissionYear;
+    this.courseName = courseName;
+  }
+
+  get course() {
+    const currentYear = new Date().getFullYear();
+    return currentYear - this.admissionYear;
+  }
+}
+
+const student1 = new Student('Вася', 'Петров', 2020, 'java');
+
+console.log(student1);
+
+class Students {
+  constructor(studentsData) {
+    this.students = studentsData.reduce(
+      (acc, student) => [
+        ...acc,
+        new Student(
+          student.firstName,
+          student.lastName,
+          student.admissionYear,
+          student.courseName,
+        ),
+      ],
+      [],
+    );
+  }
+
+  getInfo() {
+    return this.students
+      .sort((a, b) => a.course - b.course)
+      .map(
+        (student) =>
+          `${student.fullName} - ${student.courseName}, ${student.course}`,
+      );
+  }
+}
+
+const students = new Students(studentsData);
+console.log(students.getInfo());
