@@ -126,9 +126,9 @@ const differentColours = () => {
 
 const colours = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
 
-const text_1 = document.getElementById('text1');
-const text_2 = document.getElementById('text2');
-const text_3 = document.getElementById('text3');
+// const text_1 = document.getElementById('text1');
+// const text_2 = document.getElementById('text2');
+// const text_3 = document.getElementById('text3');
 //
 // text_1.addEventListener('click', differentColours());
 // text_2.addEventListener('click', differentColours());
@@ -600,16 +600,142 @@ const changeTextColor = (text) => {
       text.style.color = this.colors[this.current];
       this.current++;
       if (this.current >= this.to + 1) {
-        this.current = this.from
+        this.current = this.from;
       }
-    }
-  }
+    },
+  };
 
   return () => {
-    iteratorRange.next()
-  }
-}
+    iteratorRange.next();
+  };
+};
 
-text_1.addEventListener('click', changeTextColor(text_1));
-text_2.addEventListener('click', changeTextColor(text_2));
-text_3.addEventListener('click', changeTextColor(text_3));
+// text_1.addEventListener('click', changeTextColor(text_1));
+// text_2.addEventListener('click', changeTextColor(text_2));
+// text_3.addEventListener('click', changeTextColor(text_3));
+
+const data2 = [
+  {
+    id: '71ce9eac-e9b9-44f0-a342-9ff0b565f3b7',
+    name: 'Hotel Leopold',
+    city: 'Saint Petersburg',
+    country: 'Russia',
+    imageUrl:
+      'https://res.cloudinary.com/intellectfox/image/upload/v1610379365/fe/hotel-leopold_mflelk.jpg',
+  },
+  {
+    id: 'aa560608-a879-48a7-80b6-deff2806b250',
+    name: 'Apartment Sunshine',
+    city: 'Santa  Cruz de Tenerife',
+    country: 'Spain',
+    imageUrl:
+      'https://res.cloudinary.com/intellectfox/image/upload/v1610379364/fe/apartment-sunshine_vhdlel.jpg',
+  },
+  {
+    id: '1d88fefe-edf1-4cda-844a-babbf29bb2b3',
+    name: 'Villa Kunerad',
+    city: 'Vysokie Tatry',
+    country: 'Slowakia',
+    imageUrl:
+      'https://res.cloudinary.com/intellectfox/image/upload/v1610379365/fe/villa-kunerad_gdbqgv.jpg',
+  },
+  {
+    id: 'a2bf824d-edd8-41f0-8b70-244334086ab4',
+    name: 'Hostel Friendship',
+    city: 'Berlin',
+    country: 'Germany',
+    imageUrl:
+      'https://res.cloudinary.com/intellectfox/image/upload/v1610379364/fe/hostel-friendship_aw6tn7.jpg',
+  },
+  {
+    id: '4024535d-a498-4274-b7cb-f01ada962971',
+    name: 'Radisson Blu Hotel',
+    city: 'Kyiv',
+    country: 'Ukraine',
+    imageUrl:
+      'https://res.cloudinary.com/intellectfox/image/upload/v1610379365/fe/radisson-blu-hotel_jwtowg.jpg',
+  },
+  {
+    id: 'e51e71f6-6baf-4493-b3ae-25dc27cdc238',
+    name: 'Paradise Hotel',
+    city: 'Guadalupe',
+    country: 'Mexico',
+    imageUrl:
+      'https://res.cloudinary.com/intellectfox/image/upload/v1610379365/fe/paradise-hotel_i6whae.jpg',
+  },
+  {
+    id: '87d2b966-2431-43f3-8c0d-2c8723474dfc',
+    name: 'Hotel Grindewald',
+    city: 'Interlaken',
+    country: 'Switzerland',
+    imageUrl:
+      'https://res.cloudinary.com/intellectfox/image/upload/v1610379365/fe/hotel-grindewald_zsjsmy.jpg',
+  },
+  {
+    id: '190221c6-b18f-4dba-97de-e35f0e14c023',
+    name: 'The Andaman Resort',
+    city: 'Port Dickson',
+    country: 'Malaysia',
+    imageUrl:
+      'https://res.cloudinary.com/intellectfox/image/upload/v1610379365/fe/the-andaman-resort_d2xksj.jpg',
+  },
+];
+
+const slider = document.getElementById('wrapper_for_category');
+
+const homesItems = data2.map((hotel) =>
+      `<div class="home__advantages--item">
+         <figure class="home__advantages--img-wrapper">
+           <img src = "${hotel.imageUrl}" alt="Hotel img" />
+         </figure>
+         <p class="apartments">${hotel.name}</p>
+         <p class="apartments-location">${hotel.city}, ${hotel.country}</p>
+      </div>`,
+).join(' ');
+
+console.log(homesItems);
+
+slider.innerHTML = `<section class="home">
+                     <div class="home__container">
+                       <button class="button-next">
+                         <figure class="circle-for-desktop">
+                           <svg class="arrow-for-desktop">
+                             <use href="src/images/triphouse.svg#arrow" />
+                           </svg>
+                         </figure>
+                       </button>
+                       <button class="button-prev">
+                         <figure class="circle-for-desktop">
+                           <svg class="arrow-for-desktop arrow-js">
+                             <use href="src/images/triphouse.svg#arrow" />
+                           </svg>
+                         </figure>
+                       </button>
+                       <h2 class="home__title">Homes guests loves</h2>
+                         <div class="slider-container">
+                           <div class="home__advantages slider">
+                             ${homesItems}
+                           </div>
+                         </div>
+                       </div>
+                    </section>`;
+
+let offset = 0;
+let width;
+const sliderLine = document.querySelector('.slider');
+
+document.querySelector('.button-next').addEventListener('click', () => {
+  offset += 309;
+  if (offset > 1465) {
+    offset = 0;
+  }
+  sliderLine.style.left = -offset + 'px';
+});
+
+document.querySelector('.button-prev').addEventListener('click', () => {
+  offset -= 309;
+  if (offset < 0) {
+    offset = 1235;
+  }
+  sliderLine.style.left = -offset + 'px';
+});
