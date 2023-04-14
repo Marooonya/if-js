@@ -1,6 +1,8 @@
 const slider = document.getElementById('wrapper_for_category');
 
-fetch('https://if-student-api.onrender.com/api/hotels')
+const hotelsUrl = 'https://if-student-api.onrender.com/api/hotels'
+
+fetch(hotelsUrl)
   .then((response) => response.json())
   .then((data) => {
     const homesItems = data
@@ -44,15 +46,15 @@ fetch('https://if-student-api.onrender.com/api/hotels')
     let offset = 0;
     const sliderLine = document.querySelector('.slider');
 
-    document.querySelector('.button-prev').style.display = 'none'
+    document.querySelector('.button-prev').style.display = 'none';
 
     document.querySelector('.button-next').addEventListener('click', () => {
       offset += 309;
       if (offset > 8034) {
-        document.querySelector('.button-next').style.display = 'none'
+        document.querySelector('.button-next').style.display = 'none';
       }
       if (offset > 0) {
-        document.querySelector('.button-prev').style.display = 'flex'
+        document.querySelector('.button-prev').style.display = 'flex';
       }
       if (offset > 8343) {
         offset = 0;
@@ -63,10 +65,10 @@ fetch('https://if-student-api.onrender.com/api/hotels')
     document.querySelector('.button-prev').addEventListener('click', () => {
       offset -= 309;
       if (offset === 0) {
-        document.querySelector('.button-prev').style.display = 'none'
+        document.querySelector('.button-prev').style.display = 'none';
       }
       if (offset < 8035) {
-        document.querySelector('.button-next').style.display = 'flex'
+        document.querySelector('.button-next').style.display = 'flex';
       }
       if (offset < 0) {
         offset = 1235;
