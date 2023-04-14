@@ -1,6 +1,6 @@
 const slider = document.getElementById('wrapper_for_category');
 
-const hotelsUrl = 'https://if-student-api.onrender.com/api/hotels'
+const hotelsUrl = 'https://if-student-api.onrender.com/api/hotels';
 
 fetch(hotelsUrl)
   .then((response) => response.json())
@@ -242,3 +242,128 @@ const removeChildrenYearSelect = () => {
     selectToRemove.remove();
   }
 };
+
+const input = document.getElementById('city-search');
+const availableHotel = document.querySelector('.available-hotels');
+const form = document.querySelector('form');
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const newFindLocation = (arr, str) => {
+    const foundLocation = [];
+
+    arr.forEach((item) => {
+      if (
+        Object.values(item).join('').toLowerCase().includes(str.toLowerCase())
+      ) {
+        foundLocation.push(item);
+      }
+      if (!foundLocation.length) {
+        return 'Not found';
+      }
+    });
+    if (foundLocation.length !== 0) {
+      const homesItems = foundLocation
+        .map(
+          (hotel) =>
+            `<div class="home__advantages--item">
+         <figure class="home__advantages--img-wrapper" id="uuu">
+           <img src = "${hotel.imageUrl}" alt="Hotel img" />
+         </figure>
+         <p class="apartments">${hotel.name}</p>
+         <p class="apartments-location">${hotel.city}, ${hotel.country}</p>
+      </div>`,
+        )
+        .join(' ');
+
+      if (foundLocation.length < 4) {
+        availableHotel.innerHTML = `<section class="home">
+                     <div class="home__container">
+                       <h2 class="home__title">Available hotels</h2>
+                         <div class="home__advantages search-block">
+                           ${homesItems}
+                         </div>
+                     </div>
+                    </section>`;
+      }
+
+      if (foundLocation.length >= 4) {
+        availableHotel.innerHTML = `<section class="home">
+                     <div class="home__container">
+                      <button class="button-next">
+                         <figure class="circle-for-desktop">
+                           <svg class="arrow-for-desktop">
+                             <use href="src/images/triphouse.svg#arrow" />
+                           </svg>
+                         </figure>
+                       </button>
+                       <button class="button-prev">
+                         <figure class="circle-for-desktop">
+                           <svg class="arrow-for-desktop arrow-js">
+                             <use href="src/images/triphouse.svg#arrow" />
+                           </svg>
+                         </figure>
+                       </button>
+                       <h2 class="home__title">Available hotels</h2>
+                        <div class="slider-container">
+                           <div class="home__advantages slider slider-for-search-block">
+                             ${homesItems}
+                           </div>
+                        </div>
+                      </div>  
+                    </section>`;
+
+        let offset = 0;
+        const sliderLine = document.querySelector('.slider');
+        const commonWidth = 309 * foundLocation.length - 309 * 4 - 1;
+        console.log(commonWidth);
+
+        document.querySelector('.button-prev').style.display = 'none';
+
+        document.querySelector('.button-next').addEventListener('click', () => {
+          offset += 309;
+          if (offset > commonWidth) {
+            document.querySelector('.button-next').style.display = 'none';
+          }
+          if (offset > 0) {
+            document.querySelector('.button-prev').style.display = 'flex';
+          }
+          if (offset > 8343) {
+            offset = 0;
+          }
+          sliderLine.style.left = -offset + 'px';
+        });
+
+        document.querySelector('.button-prev').addEventListener('click', () => {
+          offset -= 309;
+          if (offset === 0) {
+            document.querySelector('.button-prev').style.display = 'none';
+          }
+          if (offset < 8035) {
+            document.querySelector('.button-next').style.display = 'flex';
+          }
+          if (offset < 0) {
+            offset = 1235;
+          }
+          sliderLine.style.left = -offset + 'px';
+        });
+      }
+    } else {
+      availableHotel.innerHTML = `<section class="home not-found">
+                     <div class="home__container not-found-home">
+                       <h2 class="home__title not-found-home__title">Sorry, we can't find this hotel or place:/</h2>
+                     </div>
+                    </section>`;
+    }
+  };
+
+  const url = `https://if-student-api.onrender.com/api/hotels`;
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      newFindLocation(data, `${input.value}`);
+    })
+    .catch((error) => console.error(error));
+});
