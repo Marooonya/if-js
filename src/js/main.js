@@ -1,81 +1,81 @@
-const slider = document.getElementById('wrapper_for_category');
-
-const hotelsUrl = 'https://if-student-api.onrender.com/api/hotels';
-
-fetch(hotelsUrl)
-  .then((response) => response.json())
-  .then((data) => {
-    const homesItems = data
-      .map(
-        (hotel) =>
-          `<div class="home__advantages--item">
-         <figure class="home__advantages--img-wrapper">
-           <img src = "${hotel.imageUrl}" alt="Hotel img" />
-         </figure>
-         <p class="apartments">${hotel.name}</p>
-         <p class="apartments-location">${hotel.city}, ${hotel.country}</p>
-      </div>`,
-      )
-      .join(' ');
-
-    slider.innerHTML = `<section class="home">
-                     <div class="home__container">
-                       <button class="button-next">
-                         <figure class="circle-for-desktop">
-                           <svg class="arrow-for-desktop">
-                             <use href="src/images/triphouse.svg#arrow" />
-                           </svg>
-                         </figure>
-                       </button>
-                       <button class="button-prev">
-                         <figure class="circle-for-desktop">
-                           <svg class="arrow-for-desktop arrow-js">
-                             <use href="src/images/triphouse.svg#arrow" />
-                           </svg>
-                         </figure>
-                       </button>
-                       <h2 class="home__title">Homes guests loves</h2>
-                         <div class="slider-container">
-                           <div class="home__advantages slider">
-                             ${homesItems}
-                           </div>
-                         </div>
-                       </div>
-                    </section>`;
-
-    let offset = 0;
-    const sliderLine = document.querySelector('.slider');
-
-    document.querySelector('.button-prev').style.display = 'none';
-
-    document.querySelector('.button-next').addEventListener('click', () => {
-      offset += 309;
-      if (offset > 8034) {
-        document.querySelector('.button-next').style.display = 'none';
-      }
-      if (offset > 0) {
-        document.querySelector('.button-prev').style.display = 'flex';
-      }
-      if (offset > 8343) {
-        offset = 0;
-      }
-      sliderLine.style.left = -offset + 'px';
-    });
-
-    document.querySelector('.button-prev').addEventListener('click', () => {
-      offset -= 309;
-      if (offset === 0) {
-        document.querySelector('.button-prev').style.display = 'none';
-      }
-      if (offset < 8035) {
-        document.querySelector('.button-next').style.display = 'flex';
-      }
-      if (offset < 0) {
-        offset = 1235;
-      }
-      sliderLine.style.left = -offset + 'px';
-    });
-  });
+// const slider = document.getElementById('wrapper_for_category');
+//
+// const hotelsUrl = 'https://if-student-api.onrender.com/api/hotels';
+//
+// fetch(hotelsUrl)
+//   .then((response) => response.json())
+//   .then((data) => {
+//     const homesItems = data
+//       .map(
+//         (hotel) =>
+//           `<div class="home__advantages--item">
+//          <figure class="home__advantages--img-wrapper">
+//            <img src = "${hotel.imageUrl}" alt="Hotel img" />
+//          </figure>
+//          <p class="apartments">${hotel.name}</p>
+//          <p class="apartments-location">${hotel.city}, ${hotel.country}</p>
+//       </div>`,
+//       )
+//       .join(' ');
+//
+//     slider.innerHTML = `<section class="home">
+//                      <div class="home__container">
+//                        <button class="button-next">
+//                          <figure class="circle-for-desktop">
+//                            <svg class="arrow-for-desktop">
+//                              <use href="src/images/triphouse.svg#arrow" />
+//                            </svg>
+//                          </figure>
+//                        </button>
+//                        <button class="button-prev">
+//                          <figure class="circle-for-desktop">
+//                            <svg class="arrow-for-desktop arrow-js">
+//                              <use href="src/images/triphouse.svg#arrow" />
+//                            </svg>
+//                          </figure>
+//                        </button>
+//                        <h2 class="home__title">Homes guests loves</h2>
+//                          <div class="slider-container">
+//                            <div class="home__advantages slider">
+//                              ${homesItems}
+//                            </div>
+//                          </div>
+//                        </div>
+//                     </section>`;
+//
+//     let offset = 0;
+//     const sliderLine = document.querySelector('.slider');
+//
+//     document.querySelector('.button-prev').style.display = 'none';
+//
+//     document.querySelector('.button-next').addEventListener('click', () => {
+//       offset += 309;
+//       if (offset > 8034) {
+//         document.querySelector('.button-next').style.display = 'none';
+//       }
+//       if (offset > 0) {
+//         document.querySelector('.button-prev').style.display = 'flex';
+//       }
+//       if (offset > 8343) {
+//         offset = 0;
+//       }
+//       sliderLine.style.left = -offset + 'px';
+//     });
+//
+//     document.querySelector('.button-prev').addEventListener('click', () => {
+//       offset -= 309;
+//       if (offset === 0) {
+//         document.querySelector('.button-prev').style.display = 'none';
+//       }
+//       if (offset < 8035) {
+//         document.querySelector('.button-next').style.display = 'flex';
+//       }
+//       if (offset < 0) {
+//         offset = 1235;
+//       }
+//       sliderLine.style.left = -offset + 'px';
+//     });
+//   });
 
 const capitalizeFirstLetter = (str) =>
   str.charAt(0).toUpperCase() + str.slice(1);
@@ -366,4 +366,92 @@ form.addEventListener('submit', (event) => {
       newFindLocation(data, `${input.value}`);
     })
     .catch((error) => console.error(error));
+});
+
+const slider = document.getElementById('wrapper_for_category');
+const hotelsUrl = 'https://if-student-api.onrender.com/api/hotels';
+const sessionStorageKey = 'homesItems';
+
+if (sessionStorage.getItem(sessionStorageKey)) {
+  slider.innerHTML = sessionStorage.getItem(sessionStorageKey);
+} else {
+  fetch(hotelsUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      const homesItems = data
+        .map(
+          (hotel) =>
+            `<div class="home__advantages--item">
+         <figure class="home__advantages--img-wrapper">
+           <img src = "${hotel.imageUrl}" alt="Hotel img" />
+         </figure>
+         <p class="apartments">${hotel.name}</p>
+         <p class="apartments-location">${hotel.city}, ${hotel.country}</p>
+      </div>`,
+        )
+        .join(' ');
+
+      sessionStorage.setItem(
+        sessionStorageKey,
+        `<section class="home">
+                   <div class="home__container">
+                     <button class="button-next">
+                       <figure class="circle-for-desktop">
+                         <svg class="arrow-for-desktop">
+                           <use href="src/images/triphouse.svg#arrow" />
+                         </svg>
+                       </figure>
+                     </button>
+                     <button class="button-prev">
+                       <figure class="circle-for-desktop">
+                         <svg class="arrow-for-desktop arrow-js">
+                           <use href="src/images/triphouse.svg#arrow" />
+                         </svg>
+                       </figure>
+                     </button>
+                     <h2 class="home__title">Homes guests loves</h2>
+                       <div class="slider-container">
+                         <div class="home__advantages slider">
+                           ${homesItems}
+                         </div>
+                       </div>
+                     </div>
+                  </section>`,
+      );
+    });
+}
+
+slider.innerHTML = sessionStorage.getItem(sessionStorageKey);
+
+let offset = 0;
+const sliderLine = document.querySelector('.slider');
+
+document.querySelector('.button-prev').style.display = 'none';
+
+document.querySelector('.button-next').addEventListener('click', () => {
+  offset += 309;
+  if (offset > 8034) {
+    document.querySelector('.button-next').style.display = 'none';
+  }
+  if (offset > 0) {
+    document.querySelector('.button-prev').style.display = 'flex';
+  }
+  if (offset > 8343) {
+    offset = 0;
+  }
+  sliderLine.style.left = -offset + 'px';
+});
+
+document.querySelector('.button-prev').addEventListener('click', () => {
+  offset -= 309;
+  if (offset === 0) {
+    document.querySelector('.button-prev').style.display = 'none';
+  }
+  if (offset < 8035) {
+    document.querySelector('.button-next').style.display = 'flex';
+  }
+  if (offset < 0) {
+    offset = 1235;
+  }
+  sliderLine.style.left = -offset + 'px';
 });
