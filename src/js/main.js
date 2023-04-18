@@ -1,3 +1,5 @@
+import { capitalizeFirstLetter } from './helpers';
+
 const slider = document.getElementById('wrapper_for_category');
 
 const hotelsUrl = 'https://if-student-api.onrender.com/api/hotels';
@@ -76,9 +78,6 @@ fetch(hotelsUrl)
       sliderLine.style.left = -offset + 'px';
     });
   });
-
-const capitalizeFirstLetter = (str) =>
-  str.charAt(0).toUpperCase() + str.slice(1);
 
 const optionsData = {
   adults: {
