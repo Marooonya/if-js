@@ -1,4 +1,4 @@
-import { capitalizeFirstLetter } from './helpers';
+import { capitalizeFirstLetter } from './helpers.js';
 
 const slider = document.getElementById('wrapper_for_category');
 
