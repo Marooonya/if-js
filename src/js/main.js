@@ -1,4 +1,4 @@
-// import { capitalizeFirstLetter } from './helpers';
+import { capitalizeFirstLetter } from './helpers.js';
 
 const slider = document.getElementById('wrapper_for_category');
 
@@ -307,7 +307,7 @@ const searchSlider = (data) => {
      </div>
     </section>`;
 
-      const sliderLength = 307 * data.length;
+      const sliderLength = 308 * data.length;
       document.querySelector(
         '.slider-for-search-block',
       ).style.width = `${sliderLength}px`;
