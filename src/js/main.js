@@ -304,6 +304,11 @@ const searchSlider = (data) => {
      </div>
     </section>`;
 
+      const sliderLength = 307 * data.length;
+      document.querySelector(
+        '.slider-for-search-block',
+      ).style.width = `${sliderLength}px`;
+
       let offset = 0;
       const sliderLine = document.querySelector('.slider');
       const commonWidth = 309 * data.length - 309 * 4 - 1;
@@ -346,7 +351,6 @@ const searchSlider = (data) => {
      </div>
    </section>`;
   }
-  // console.log(data.length);
 };
 
 const apiUrl = 'https://if-student-api.onrender.com/api/hotels';
@@ -366,4 +370,10 @@ searchButton.addEventListener('click', (event) => {
     .catch((error) => {
       console.error('Error:', error);
     });
+});
+
+searchButton.addEventListener('click', () => {
+  availableHotel.scrollIntoView({
+    behavior: 'smooth',
+  });
 });
