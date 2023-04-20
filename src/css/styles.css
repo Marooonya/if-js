@@ -456,9 +456,7 @@ input:focus {
 .home__advantages {
   display: flex;
   /*width: 100%;*/
-
-  width: 160vw;
-
+  width: 9566px;
   gap: 16px;
   font-size: 24px;
 }
@@ -468,7 +466,9 @@ input:focus {
 }
 
 .home__advantages--img-wrapper img {
+  aspect-ratio: 1 / 1;
   width: 100%;
+  height: auto;
   margin-bottom: 24px;
 }
 
@@ -1630,12 +1630,12 @@ input:focus {
 
 .slider-container {
   overflow: hidden;
-  width: 100%;
+  width: 1229px;
 }
 
 .slider {
   position: relative;
-  transition: ease 1s;
+  transition: all ease 1s;
 }
 
 .button-next {
