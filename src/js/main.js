@@ -386,3 +386,53 @@ document.querySelector('.button-prev').addEventListener('click', () => {
   }
   sliderLine.style.left = -offset + 'px';
 });
+
+const input = document.getElementById('fileInput');
+const field = document.getElementById('fileField');
+const button = document.getElementById('fileButton');
+const img = document.getElementById('img');
+const form = document.getElementById('form');
+
+field.addEventListener('click', () => {
+  input.click();
+  loadFile();
+  sendButton();
+});
+
+function loadFile() {
+  input.addEventListener('change', () => {
+    const file = input.files[0];
+
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+
+    reader.onload = function () {
+      console.log(reader.result);
+      img.setAttribute('src', reader.result);
+    };
+  });
+}
+
+function sendButton() {
+  button.addEventListener('click', () => {
+    const formData = new FormData(form);
+    formData.append('file', input.files[0]);
+
+    const response = fetch('https://if-student-api.onrender.com/api/file', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: formData,
+    });
+
+    console.log(formData);
+
+    if (response.ok) {
+      alert('ok');
+    } else {
+      alert('Ошибка: ' + response.status);
+    }
+  });
+}
