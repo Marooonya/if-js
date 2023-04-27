@@ -280,49 +280,151 @@ const searchHotels = (event) => {
   event.preventDefault();
   const searchValue = searchInput.value;
 
-  fetch(apiUrl + new URLSearchParams({
-    search: `${searchValue}`
-  }))
-      .then((response) => response.json())
-      .then((data) => {
-        searchSlider(data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+  fetch(
+    apiUrl +
+      new URLSearchParams({
+        search: `${searchValue}`,
+      }),
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      searchSlider(data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
 
   availableHotel.scrollIntoView({
     behavior: 'smooth',
   });
-}
+};
 
 searchButton.addEventListener('click', searchHotels);
-
 
 const slider = document.getElementById('wrapper_for_category');
 const hotelsUrl = 'https://if-student-api.onrender.com/api/hotels';
 const sessionStorageKey = 'homesItems';
 
+// fetch(hotelsUrl)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       console.log(JSON.stringify(data))
+//       const sessionStorageKey = 'hotels'
+//       sessionStorage.setItem(
+//           sessionStorageKey, JSON.stringify(data))
+//         const storedData = sessionStorage.getItem(sessionStorageKey);
+//         const dataHotels = JSON.parse(storedData);
+//         console.log(dataHotels);
+//         const homesItems = dataHotels
+//             .map(
+//                 (hotel) =>
+//                     `<div class="home__advantages--item">
+//          <figure class="home__advantages--img-wrapper">
+//            <img src = "${hotel.imageUrl}" alt="Hotel img" />
+//          </figure>
+//          <p class="apartments">${hotel.name}</p>
+//          <p class="apartments-location">${hotel.city}, ${hotel.country}</p>
+//       </div>`,
+//             )
+//             .join(' ');
+//
+//         slider.innerHTML = `<section class="home">
+//                    <div class="home__container">
+//                      <button class="button-next">
+//                        <figure class="circle-for-desktop">
+//                          <svg class="arrow-for-desktop">
+//                            <use href="src/images/triphouse.svg#arrow" />
+//                          </svg>
+//                        </figure>
+//                      </button>
+//                      <button class="button-prev">
+//                        <figure class="circle-for-desktop">
+//                          <svg class="arrow-for-desktop arrow-js">
+//                            <use href="src/images/triphouse.svg#arrow" />
+//                          </svg>
+//                        </figure>
+//                      </button>
+//                      <h2 class="home__title">Homes guests loves</h2>
+//                        <div class="slider-container">
+//                          <div class="home__advantages slider">
+//                            ${homesItems}
+//                          </div>
+//                        </div>
+//                      </div>
+//                   </section>`
+//     });
+
+// const nnn = () => {
+// fetch(hotelsUrl)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       const homesItems = data
+//           .map(
+//               (hotel) =>
+//                   `<div class="home__advantages--item">
+//        <figure class="home__advantages--img-wrapper">
+//          <img src = "${hotel.imageUrl}" alt="Hotel img" />
+//        </figure>
+//        <p class="apartments">${hotel.name}</p>
+//        <p class="apartments-location">${hotel.city}, ${hotel.country}</p>
+//     </div>`,
+//           )
+//           .join(' ');
+//
+//       sessionStorage.setItem(
+//           sessionStorageKey,
+//           `<section class="home">
+//                  <div class="home__container">
+//                    <button class="button-next">
+//                      <figure class="circle-for-desktop">
+//                        <svg class="arrow-for-desktop">
+//                          <use href="src/images/triphouse.svg#arrow" />
+//                        </svg>
+//                      </figure>
+//                    </button>
+//                    <button class="button-prev">
+//                      <figure class="circle-for-desktop">
+//                        <svg class="arrow-for-desktop arrow-js">
+//                          <use href="src/images/triphouse.svg#arrow" />
+//                        </svg>
+//                      </figure>
+//                    </button>
+//                    <h2 class="home__title">Homes guests loves</h2>
+//                      <div class="slider-container">
+//                        <div class="home__advantages slider">
+//                          ${homesItems}
+//                        </div>
+//                      </div>
+//                    </div>
+//                 </section>`,
+//       );
+//     });
+// }
+
 const nnn = () => {
   fetch(hotelsUrl)
-      .then((response) => response.json())
-      .then((data) => {
-        const homesItems = data
-            .map(
-                (hotel) =>
-                    `<div class="home__advantages--item">
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(JSON.stringify(data));
+      const sessionStorageKey = 'hotels';
+      sessionStorage.setItem(sessionStorageKey, JSON.stringify(data));
+      const storedData = sessionStorage.getItem(sessionStorageKey);
+      const dataHotels = JSON.parse(storedData);
+      console.log(dataHotels);
+      const homesItems = dataHotels
+        .map(
+          (hotel) =>
+            `<div class="home__advantages--item">
          <figure class="home__advantages--img-wrapper">
            <img src = "${hotel.imageUrl}" alt="Hotel img" />
          </figure>
          <p class="apartments">${hotel.name}</p>
          <p class="apartments-location">${hotel.city}, ${hotel.country}</p>
       </div>`,
-            )
-            .join(' ');
+        )
+        .join(' ');
 
-        sessionStorage.setItem(
-            sessionStorageKey,
-            `<section class="home">
+      slider.innerHTML = `<section class="home">
                    <div class="home__container">
                      <button class="button-next">
                        <figure class="circle-for-desktop">
@@ -345,15 +447,14 @@ const nnn = () => {
                          </div>
                        </div>
                      </div>
-                  </section>`,
-        );
-      });
-}
+                  </section>`;
+    });
+};
 
 if (sessionStorage.getItem(sessionStorageKey)) {
   slider.innerHTML = sessionStorage.getItem(sessionStorageKey);
 } else {
-  nnn()
+  nnn();
 }
 
 slider.innerHTML = sessionStorage.getItem(sessionStorageKey);
