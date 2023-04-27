@@ -247,7 +247,6 @@ let searchValue = '';
 
 citySearchInput.addEventListener('input', (event) => {
   searchValue = event.target.value;
-  console.log(searchValue);
 });
 
 const availableHotel = document.querySelector('.available-hotels');
@@ -312,7 +311,6 @@ const searchSlider = (data) => {
       let offset = 0;
       const sliderLine = document.querySelector('.slider');
       const commonWidth = 309 * data.length - 309 * 4 - 1;
-      console.log(commonWidth);
 
       document.querySelector('.button-prev').style.display = 'none';
 
@@ -353,27 +351,29 @@ const searchSlider = (data) => {
   }
 };
 
-const apiUrl = 'https://if-student-api.onrender.com/api/hotels';
+const apiUrl = 'https://if-student-api.onrender.com/api/hotels?';
 const searchInput = document.getElementById('city-search');
 const searchButton = document.querySelector('.top-section__form--button');
 
-searchButton.addEventListener('click', (event) => {
+const searchHotels = (event) => {
   event.preventDefault();
   const searchValue = searchInput.value;
-  const url = `${apiUrl}?search=${searchValue}`;
 
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      searchSlider(data);
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-});
+  fetch(apiUrl + new URLSearchParams({
+    search: `${searchValue}`
+  }))
+      .then((response) => response.json())
+      .then((data) => {
+        searchSlider(data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
 
-searchButton.addEventListener('click', () => {
   availableHotel.scrollIntoView({
     behavior: 'smooth',
   });
-});
+}
+
+searchButton.addEventListener('click', searchHotels);
+
