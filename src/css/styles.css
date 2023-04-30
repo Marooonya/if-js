@@ -1,4 +1,4 @@
-@import url('src/fonts');
+@import url('./src/fonts');
 
 :root {
   --text-color: #383838;
@@ -1749,4 +1749,37 @@ input:focus {
   flex-wrap: wrap;
   row-gap: 4px;
   justify-content: space-between;
+}
+
+.search-block {
+  justify-content: center;
+  width: 100%;
+}
+
+/*.newImg {*/
+/*  transition: transform 0.9s ease-in-out;*/
+/*}*/
+
+/*.newImg:hover {*/
+/*  transform: scale(1.2);*/
+/*  box-shadow: #000066;*/
+/*}*/
+
+/*.slider-for-search-block {*/
+/*  width: 1840px;*/
+/*}*/
+
+.not-found {
+  background-color: #ffffff;
+}
+
+.not-found-home {
+  background-color: #eaf0f9;
+  width: 80%;
+  margin-top: 100px;
+  border-radius: 20px;
+}
+
+.not-found-home__title {
+  margin-bottom: 0;
 }
