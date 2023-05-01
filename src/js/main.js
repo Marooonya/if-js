@@ -1,4 +1,5 @@
 import { capitalizeFirstLetter } from './helpers.js';
+import { hotelsUrl, homesStorageData } from './constants.js';
 
 const optionsData = {
   adults: {
@@ -168,7 +169,6 @@ let searchValue = '';
 
 citySearchInput.addEventListener('input', (event) => {
   searchValue = event.target.value;
-  console.log(searchValue);
 });
 
 const availableHotel = document.querySelector('.available-hotels');
@@ -233,7 +233,6 @@ const searchSlider = (data) => {
       let offset = 0;
       const sliderLine = document.querySelector('.slider');
       const commonWidth = 309 * data.length - 309 * 4 - 1;
-      console.log(commonWidth);
 
       document.querySelector('.button-prev').style.display = 'none';
 
@@ -274,16 +273,20 @@ const searchSlider = (data) => {
   }
 };
 
-const apiUrl = 'https://if-student-api.onrender.com/api/hotels';
+const apiUrl = 'https://if-student-api.onrender.com/api/hotels?';
 const searchInput = document.getElementById('city-search');
 const searchButton = document.querySelector('.top-section__form--button');
 
-searchButton.addEventListener('click', (event) => {
+const searchHotels = (event) => {
   event.preventDefault();
   const searchValue = searchInput.value;
-  const url = `${apiUrl}?search=${searchValue}`;
 
-  fetch(url)
+  fetch(
+    apiUrl +
+      new URLSearchParams({
+        search: `${searchValue}`,
+      }),
+  )
     .then((response) => response.json())
     .then((data) => {
       searchSlider(data);
@@ -291,40 +294,31 @@ searchButton.addEventListener('click', (event) => {
     .catch((error) => {
       console.error('Error:', error);
     });
-});
 
-searchButton.addEventListener('click', () => {
   availableHotel.scrollIntoView({
     behavior: 'smooth',
   });
-});
+};
+
+searchButton.addEventListener('click', searchHotels);
 
 const slider = document.getElementById('wrapper_for_category');
-const hotelsUrl = 'https://if-student-api.onrender.com/api/hotels';
-const sessionStorageKey = 'homesItems';
 
-if (sessionStorage.getItem(sessionStorageKey)) {
-  slider.innerHTML = sessionStorage.getItem(sessionStorageKey);
-} else {
-  fetch(hotelsUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      const homesItems = data
-        .map(
-          (hotel) =>
-            `<div class="home__advantages--item">
+const createHomesBlock = (data) => {
+  const homesItems = data
+    .map(
+      ({ imageUrl, name, city, country }) =>
+        `<div class="home__advantages--item">
          <figure class="home__advantages--img-wrapper">
-           <img src = "${hotel.imageUrl}" alt="Hotel img" />
+           <img src = "${imageUrl}" alt="Hotel img" />
          </figure>
-         <p class="apartments">${hotel.name}</p>
-         <p class="apartments-location">${hotel.city}, ${hotel.country}</p>
+         <p class="apartments">${name}</p>
+         <p class="apartments-location">${city}, ${country}</p>
       </div>`,
-        )
-        .join(' ');
+    )
+    .join(' ');
 
-      sessionStorage.setItem(
-        sessionStorageKey,
-        `<section class="home">
+  slider.innerHTML = `<section class="home">
                    <div class="home__container">
                      <button class="button-next">
                        <figure class="circle-for-desktop">
@@ -347,12 +341,20 @@ if (sessionStorage.getItem(sessionStorageKey)) {
                          </div>
                        </div>
                      </div>
-                  </section>`,
-      );
+                  </section>`;
+};
+
+if (sessionStorage.getItem(homesStorageData)) {
+  const homesData = JSON.parse(sessionStorage.getItem(homesStorageData));
+  createHomesBlock(homesData);
+} else {
+  fetch(hotelsUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      sessionStorage.setItem(homesStorageData, JSON.stringify(data));
+      createHomesBlock(data);
     });
 }
-
-slider.innerHTML = sessionStorage.getItem(sessionStorageKey);
 
 let offset = 0;
 const sliderLine = document.querySelector('.slider');
