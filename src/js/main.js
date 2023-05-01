@@ -1,83 +1,5 @@
 import { capitalizeFirstLetter } from './helpers.js';
-
-const slider = document.getElementById('wrapper_for_category');
-
-const hotelsUrl = 'https://if-student-api.onrender.com/api/hotels';
-
-fetch(hotelsUrl)
-  .then((response) => response.json())
-  .then((data) => {
-    const homesItems = data
-      .map(
-        (hotel) =>
-          `<div class="home__advantages--item">
-         <figure class="home__advantages--img-wrapper">
-           <img src = "${hotel.imageUrl}" alt="Hotel img" />
-         </figure>
-         <p class="apartments">${hotel.name}</p>
-         <p class="apartments-location">${hotel.city}, ${hotel.country}</p>
-      </div>`,
-      )
-      .join(' ');
-
-    slider.innerHTML = `<section class="home">
-                     <div class="home__container">
-                       <button class="button-next">
-                         <figure class="circle-for-desktop">
-                           <svg class="arrow-for-desktop">
-                             <use href="src/images/triphouse.svg#arrow" />
-                           </svg>
-                         </figure>
-                       </button>
-                       <button class="button-prev">
-                         <figure class="circle-for-desktop">
-                           <svg class="arrow-for-desktop arrow-js">
-                             <use href="src/images/triphouse.svg#arrow" />
-                           </svg>
-                         </figure>
-                       </button>
-                       <h2 class="home__title">Homes guests loves</h2>
-                         <div class="slider-container">
-                           <div class="home__advantages slider">
-                             ${homesItems}
-                           </div>
-                         </div>
-                       </div>
-                    </section>`;
-
-    let offset = 0;
-    const sliderLine = document.querySelector('.slider');
-
-    document.querySelector('.button-prev').style.display = 'none';
-
-    document.querySelector('.button-next').addEventListener('click', () => {
-      offset += 309;
-      if (offset > 8034) {
-        document.querySelector('.button-next').style.display = 'none';
-      }
-      if (offset > 0) {
-        document.querySelector('.button-prev').style.display = 'flex';
-      }
-      if (offset > 8343) {
-        offset = 0;
-      }
-      sliderLine.style.left = -offset + 'px';
-    });
-
-    document.querySelector('.button-prev').addEventListener('click', () => {
-      offset -= 309;
-      if (offset === 0) {
-        document.querySelector('.button-prev').style.display = 'none';
-      }
-      if (offset < 8035) {
-        document.querySelector('.button-next').style.display = 'flex';
-      }
-      if (offset < 0) {
-        offset = 1235;
-      }
-      sliderLine.style.left = -offset + 'px';
-    });
-  });
+import { hotelsUrl, homesStorageData } from './constants.js';
 
 const optionsData = {
   adults: {
@@ -359,21 +281,110 @@ const searchHotels = (event) => {
   event.preventDefault();
   const searchValue = searchInput.value;
 
-  fetch(apiUrl + new URLSearchParams({
-    search: `${searchValue}`
-  }))
-      .then((response) => response.json())
-      .then((data) => {
-        searchSlider(data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+  fetch(
+    apiUrl +
+      new URLSearchParams({
+        search: `${searchValue}`,
+      }),
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      searchSlider(data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
 
   availableHotel.scrollIntoView({
     behavior: 'smooth',
   });
-}
+};
 
 searchButton.addEventListener('click', searchHotels);
 
+const slider = document.getElementById('wrapper_for_category');
+
+const createHomesBlock = (data) => {
+  const homesItems = data
+    .map(
+      ({ imageUrl, name, city, country }) =>
+        `<div class="home__advantages--item">
+         <figure class="home__advantages--img-wrapper">
+           <img src = "${imageUrl}" alt="Hotel img" />
+         </figure>
+         <p class="apartments">${name}</p>
+         <p class="apartments-location">${city}, ${country}</p>
+      </div>`,
+    )
+    .join(' ');
+
+  slider.innerHTML = `<section class="home">
+                   <div class="home__container">
+                     <button class="button-next">
+                       <figure class="circle-for-desktop">
+                         <svg class="arrow-for-desktop">
+                           <use href="src/images/triphouse.svg#arrow" />
+                         </svg>
+                       </figure>
+                     </button>
+                     <button class="button-prev">
+                       <figure class="circle-for-desktop">
+                         <svg class="arrow-for-desktop arrow-js">
+                           <use href="src/images/triphouse.svg#arrow" />
+                         </svg>
+                       </figure>
+                     </button>
+                     <h2 class="home__title">Homes guests loves</h2>
+                       <div class="slider-container">
+                         <div class="home__advantages slider">
+                           ${homesItems}
+                         </div>
+                       </div>
+                     </div>
+                  </section>`;
+};
+
+if (sessionStorage.getItem(homesStorageData)) {
+  const homesData = JSON.parse(sessionStorage.getItem(homesStorageData));
+  createHomesBlock(homesData);
+} else {
+  fetch(hotelsUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      sessionStorage.setItem(homesStorageData, JSON.stringify(data));
+      createHomesBlock(data);
+    });
+}
+
+let offset = 0;
+const sliderLine = document.querySelector('.slider');
+
+document.querySelector('.button-prev').style.display = 'none';
+
+document.querySelector('.button-next').addEventListener('click', () => {
+  offset += 309;
+  if (offset > 8034) {
+    document.querySelector('.button-next').style.display = 'none';
+  }
+  if (offset > 0) {
+    document.querySelector('.button-prev').style.display = 'flex';
+  }
+  if (offset > 8343) {
+    offset = 0;
+  }
+  sliderLine.style.left = -offset + 'px';
+});
+
+document.querySelector('.button-prev').addEventListener('click', () => {
+  offset -= 309;
+  if (offset === 0) {
+    document.querySelector('.button-prev').style.display = 'none';
+  }
+  if (offset < 8035) {
+    document.querySelector('.button-next').style.display = 'flex';
+  }
+  if (offset < 0) {
+    offset = 1235;
+  }
+  sliderLine.style.left = -offset + 'px';
+});

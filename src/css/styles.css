@@ -1756,19 +1756,6 @@ input:focus {
   width: 100%;
 }
 
-/*.newImg {*/
-/*  transition: transform 0.9s ease-in-out;*/
-/*}*/
-
-/*.newImg:hover {*/
-/*  transform: scale(1.2);*/
-/*  box-shadow: #000066;*/
-/*}*/
-
-/*.slider-for-search-block {*/
-/*  width: 1840px;*/
-/*}*/
-
 .not-found {
   background-color: #ffffff;
 }
