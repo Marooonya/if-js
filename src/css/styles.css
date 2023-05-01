@@ -1770,38 +1770,3 @@ input:focus {
 .not-found-home__title {
   margin-bottom: 0;
 }
-
-.new-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  background-color: #10367c;
-  padding: 50px;
-}
-
-#fileField{
-  width: 20vw;
-  height: 20vw;
-  border: 1px solid #9c9c9c;
-  background-color: #0f2855;
-  border-radius: 20%;
-}
-
-#fileInput {
-  width: 100%;
-}
-
-#img{
-  width: 100%;
-  aspect-ratio: 1/1;
-  border-radius: 20%;
-}
-
-#fileButton {
-  color: #eaf0f9;
-  background-color: #0f2855;
-  border-radius: 20px;
-  padding: 10px 35px;
-  font-size: 18px;
-}

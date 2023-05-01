@@ -1,0 +1,49 @@
+@import url('./src/fonts');
+
+* {
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.new-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 20px;
+  padding: 50px;
+}
+
+#fileField {
+  width: 20vw;
+  height: 20vw;
+  border: 1px solid #9c9c9c;
+  border-radius: 20%;
+  position: relative;
+}
+
+#fileInput {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+#img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 20%;
+}
+
+#fileButton {
+  border-radius: 20px;
+  padding: 10px 35px;
+  font-size: 18px;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid #9c9c9c;
+}
