@@ -1,26 +1,19 @@
-import { capitalizeFirstLetter } from './helpers.js';
-import { hotelsUrl, homesStorageData } from './constants.js';
+import { capitalizeFirstLetter, bubbleSort } from './helpers.js';
+import {
+  hotelsUrl,
+  homesStorageData,
+  optionsData,
+  optionContainer,
+  inputOptions,
+  citySearchInput,
+  availableHotel,
+  apiUrl,
+  searchInput,
+  searchButton,
+  slider,
+  sliderLine,
+} from './constants.js';
 
-const optionsData = {
-  adults: {
-    value: 1,
-    min: 1,
-    max: 30,
-  },
-  children: {
-    value: 0,
-    min: 0,
-    max: 10,
-  },
-  rooms: {
-    value: 1,
-    min: 1,
-    max: 30,
-  },
-};
-
-const optionContainer = document.getElementById('option');
-const inputOptions = document.getElementById('adults-search');
 inputOptions.placeholder = `${optionsData.adults.value} Adults — ${optionsData.children.value} Children — ${optionsData.rooms.value} Room`;
 
 const createOptionsDiv = () => {
@@ -143,6 +136,8 @@ const removeChildrenYearQuestion = () => {
   optionTextDiv.innerHTML = '';
 };
 
+let childAge = '';
+
 const addChildrenYearSelect = () => {
   const childrenAgeBlock = document.getElementById('options-select-items');
   const childrenAgeOptions = [...Array(18)]
@@ -154,6 +149,21 @@ const addChildrenYearSelect = () => {
     )
     .join('');
   childrenAgeBlock.innerHTML += `<div class="options-select-item"><select id="options-child-age" class="options-child-age-select" name="options-child-age">${childrenAgeOptions}</select></div>`;
+
+  const writeChildrenAge = () => {
+    const arrOfAge = [];
+    const selectElement = document.querySelectorAll(
+      '.options-child-age-select',
+    );
+    selectElement.forEach((item) => {
+      item.addEventListener('change', () => {
+        arrOfAge.push(item.value);
+        childAge = arrOfAge.join(',');
+        return childAge;
+      });
+    });
+  };
+  writeChildrenAge();
 };
 
 const removeChildrenYearSelect = () => {
@@ -164,14 +174,11 @@ const removeChildrenYearSelect = () => {
   }
 };
 
-const citySearchInput = document.getElementById('city-search');
 let searchValue = '';
 
 citySearchInput.addEventListener('input', (event) => {
   searchValue = event.target.value;
 });
-
-const availableHotel = document.querySelector('.available-hotels');
 
 const searchSlider = (data) => {
   if (data.length !== 0) {
@@ -180,7 +187,7 @@ const searchSlider = (data) => {
         (hotel) =>
           `<div class="home__advantages--item">
         <figure class="home__advantages--img-wrapper" id="uuu">
-         <img src = "${hotel.imageUrl}" alt="Hotel img" />
+         <img src="${hotel.imageUrl}" alt="Hotel img" />
         </figure>
         <p class="apartments">${hotel.name}</p>
         <p class="apartments-location">${hotel.city}, ${hotel.country}</p>
@@ -273,18 +280,19 @@ const searchSlider = (data) => {
   }
 };
 
-const apiUrl = 'https://if-student-api.onrender.com/api/hotels?';
-const searchInput = document.getElementById('city-search');
-const searchButton = document.querySelector('.top-section__form--button');
-
 const searchHotels = (event) => {
   event.preventDefault();
   const searchValue = searchInput.value;
-
+  const adults = optionsData.adults.value;
+  const children = optionsData.children.value > 0 ? childAge : '';
+  const rooms = optionsData.rooms.value;
   fetch(
     apiUrl +
       new URLSearchParams({
         search: `${searchValue}`,
+        adults: `${adults}`,
+        children: `${children}`,
+        rooms: `${rooms}`,
       }),
   )
     .then((response) => response.json())
@@ -302,9 +310,8 @@ const searchHotels = (event) => {
 
 searchButton.addEventListener('click', searchHotels);
 
-const slider = document.getElementById('wrapper_for_category');
-
 const createHomesBlock = (data) => {
+  bubbleSort(data);
   const homesItems = data
     .map(
       ({ imageUrl, name, city, country }) =>
@@ -357,8 +364,6 @@ if (sessionStorage.getItem(homesStorageData)) {
 }
 
 let offset = 0;
-const sliderLine = document.querySelector('.slider');
-
 document.querySelector('.button-prev').style.display = 'none';
 
 document.querySelector('.button-next').addEventListener('click', () => {
