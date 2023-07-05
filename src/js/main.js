@@ -11,7 +11,6 @@ import {
   searchInput,
   searchButton,
   slider,
-  sliderLine,
 } from './constants.js';
 
 inputOptions.placeholder = `${optionsData.adults.value} Adults — ${optionsData.children.value} Children — ${optionsData.rooms.value} Room`;
@@ -363,6 +362,7 @@ if (sessionStorage.getItem(homesStorageData)) {
     });
 }
 
+const sliderLine = document.querySelector('.slider');
 let offset = 0;
 document.querySelector('.button-prev').style.display = 'none';
 

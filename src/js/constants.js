@@ -27,4 +27,3 @@ export const searchButton = document.querySelector(
   '.top-section__form--button',
 );
 export const slider = document.getElementById('wrapper_for_category');
-export const sliderLine = document.querySelector('.slider');
